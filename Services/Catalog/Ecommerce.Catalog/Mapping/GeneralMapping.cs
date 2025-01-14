@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Ecommerce.Catalog.Dtos.CategoryDtos;
-using Ecommerce.Catalog.Dtos.ProductDetaılDtos;
+using Ecommerce.Catalog.Dtos.ProductDetailDtos;
+
 using Ecommerce.Catalog.Dtos.ProductDto;
 using Ecommerce.Catalog.Dtos.ProductImageDto;
 using Ecommerce.Catalog.Entities;

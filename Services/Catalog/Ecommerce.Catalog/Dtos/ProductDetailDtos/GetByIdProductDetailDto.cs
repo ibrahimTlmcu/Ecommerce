@@ -1,4 +1,4 @@
-﻿namespace Ecommerce.Catalog.Dtos.ProductDetaılDtos
+﻿namespace Ecommerce.Catalog.Dtos.ProductDetailDtos
 {
     public class GetByIdProductDetailDto
     {
