@@ -25,9 +25,9 @@ namespace Ecommerce.Catalog.Mapping
             CreateMap<Category,GetByIdCategoryDto>().ReverseMap();
 
             CreateMap<Product,ResultProductDto>().ReverseMap();
-            CreateMap<Product,CreateCategoryDto>().ReverseMap();
-            CreateMap<Product,UpdateCategoryDto>().ReverseMap();
-            CreateMap<Product,GetByIdCategoryDto>().ReverseMap();
+            CreateMap<Product,CreateProductDto>().ReverseMap();
+            CreateMap<Product,UpdateProductDto>().ReverseMap();
+            CreateMap<Product,GetByIdProductDto>().ReverseMap();
 
 
             CreateMap<ProductDetail,ResultProductDetailDto>().ReverseMap();
@@ -36,9 +36,9 @@ namespace Ecommerce.Catalog.Mapping
             CreateMap<ProductDetail,GetByIdProductDetailDto>().ReverseMap();
 
             CreateMap<ProductImages,ResultProductImageDto>().ReverseMap();
-            CreateMap<ProductImages,CreateProductDetailDto>().ReverseMap();
-            CreateMap<ProductImages,UpdateProductDetailDto>().ReverseMap();
-            CreateMap<ProductImages,GetByIdProductDetailDto>().ReverseMap();
+            CreateMap<ProductImages,CreateProductImageDto>().ReverseMap();
+            CreateMap<ProductImages,UpdateProductImageDto>().ReverseMap();
+            CreateMap<ProductImages,GetByIdProductImageDto>().ReverseMap();
 
 
 
