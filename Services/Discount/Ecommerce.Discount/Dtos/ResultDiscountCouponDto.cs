@@ -9,5 +9,7 @@
         public bool IsActive { get; set; }
 
         public DateTime ValidDate { get; set; }
+
+        public  string Edayi_Seviyorum { get; set; }
     }
 }
