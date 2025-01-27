@@ -9,7 +9,11 @@ namespace Ecommerce.Order.Application.Features.CQRS.Queries.AddresQueires
     public class GetAddressByIdQuery
     {
         public int Id { get; set; }
-        
+
+        public GetAddressByIdQuery(int id )
+        {
+            Id  = id;
+        }
 
 
     }
