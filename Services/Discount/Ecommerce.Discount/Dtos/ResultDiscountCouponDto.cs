@@ -10,6 +10,10 @@
 
         public DateTime ValidDate { get; set; }
 
-        public  string Edayi_Seviyorum { get; set; }
+    
+
+        
+      
+
     }
 }
