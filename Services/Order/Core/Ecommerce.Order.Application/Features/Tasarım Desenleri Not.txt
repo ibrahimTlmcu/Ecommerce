@@ -1,0 +1,16 @@
+﻿
+
+
+CQRS - Read ve Write İşlemlerini Ayırır 
+
+------------------------------------------------
+Read ---> Result olarak işlemleri tutar. 
+Parametre varsa ----> Queries olarak tutar 
+------------------------------------------------
+
+-----------------------------------------------------------------------------------------
+Eğer ekleme silme gibi işlemlerde Parametreler varsa -> Commands klasörlerinde tutulacak.
+Crud----> Handlers klasörü içinde
+-----------------------------------------------------------------------------------------
+
+
