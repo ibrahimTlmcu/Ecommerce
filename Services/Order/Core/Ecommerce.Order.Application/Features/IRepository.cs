@@ -17,7 +17,7 @@ namespace Ecommerce.Order.Application.Features
 
         Task<T> UpdateAsync(T entity);
         
-        Task<T> DeleteAsync(int id);
+        Task<T> DeleteAsync(T entity);
 
         Task<T> GetByFilterAsync(Expression<Func<T, bool>>filter);
         //T giriş değerim ve bool türünde true false gibi çıkış değerim var
