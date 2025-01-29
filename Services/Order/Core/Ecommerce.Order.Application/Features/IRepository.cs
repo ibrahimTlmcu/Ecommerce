@@ -13,11 +13,11 @@ namespace Ecommerce.Order.Application.Features
 
         Task<T> GetByIdAsync(int id);
 
-        Task<T> CreatAsync(T entity);
+        Task CreateAsync(T entity);
 
-        Task<T> UpdateAsync(T entity);
+        Task UpdateAsync(T entity);
         
-        Task<T> DeleteAsync(T entity);
+        Task DeleteAsync(T entity);
 
         Task<T> GetByFilterAsync(Expression<Func<T, bool>>filter);
         //T giriş değerim ve bool türünde true false gibi çıkış değerim var

@@ -23,7 +23,7 @@ namespace Ecommerce.Order.Application.Features.CQRS.Handlers.AddresHandlers
 
         public async Task Handle(CreateAddressCommands createAddressCommand)
         {
-            await _repository.CreatAsync(new Address
+            await _repository.CreateAsync(new Address
             {
                 City = createAddressCommand.City,
                 Detail = createAddressCommand.Detail,
