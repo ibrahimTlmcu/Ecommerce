@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ecommerce.Order.Application.Features.CQRS.Results.AddressResults
 {
-    public class GetAddressByIdQueryResult
+    public class GetOrderDetailByIdQuery
     {
         public int AddressId { get; set; }
 
