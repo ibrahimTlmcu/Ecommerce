@@ -1,8 +1,16 @@
 using Ecommerce.Order.Application.Features.CQRS.Handlers.AddresHandlers;
 using Ecommerce.Order.Application.Features.CQRS.Handlers.OrderDetailHandlers;
 using Ecommerce.Order.Application.Features.CQRS.Queries.AddresQueires;
+using Ecommerce.Order.Application.Interfaces;
+using Ecommerce.Order.Application.Services;
+using Ecommerce.Order.Persistence.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddApplicationService(builder.Configuration);
+
 
 builder.Services.AddScoped<GetAddressByIdQuery>();
 builder.Services.AddScoped<GetAddressByIdQueryHandler>();
