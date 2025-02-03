@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Ecommerce.Order.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ecommerce.Order.Domain.Entities
+namespace Ecommerce.Order.Application.Features.Mediator.Result.OrderingResults
 {
-    public class Ordering
+    public class GetOrderingQueryResult
     {
         public int OrderingId { get; set; }
         public string UserId { get; set; }
@@ -14,5 +15,6 @@ namespace Ecommerce.Order.Domain.Entities
 
         public DateTime OrderDate { get; set; }
 
-    } 
+        public List<OrderDetail> OrderDetails { get; set; }
+    }
 }
