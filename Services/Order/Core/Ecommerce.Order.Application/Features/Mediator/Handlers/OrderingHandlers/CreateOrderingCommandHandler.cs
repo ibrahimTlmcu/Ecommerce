@@ -14,9 +14,15 @@ namespace Ecommerce.Order.Application.Features.Mediator.Handlers.OrderingHandler
         private readonly IRepository<Ordering> _repository;
 
 
-        public Task Handle(CreateOrderingCommands request, CancellationToken cancellationToken)
+        public async  Task Handle(CreateOrderingCommands request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+
+            await _repository.CreateAsync(new Ordering
+            {
+                OrderDate = request.OrderDate,
+                TotalPrice = request.TotalPrice,
+                UserId = request.UserId,
+            });
         }
     }
 }
