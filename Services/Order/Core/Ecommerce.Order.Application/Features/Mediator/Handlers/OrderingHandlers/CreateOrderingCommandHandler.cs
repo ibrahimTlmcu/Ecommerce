@@ -1,4 +1,5 @@
 ﻿using Ecommerce.Order.Application.Features.Mediator.Commands.OrderingCommands;
+using Ecommerce.Order.Application.Interfaces;
 using Ecommerce.Order.Domain.Entities;
 using MediatR;
 using System;

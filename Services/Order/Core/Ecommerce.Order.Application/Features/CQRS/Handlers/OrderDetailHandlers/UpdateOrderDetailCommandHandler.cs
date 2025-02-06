@@ -1,4 +1,5 @@
 ﻿using Ecommerce.Order.Application.Features.CQRS.Commands.OrderDetailCommands;
+using Ecommerce.Order.Application.Interfaces;
 using Ecommerce.Order.Domain.Entities;
 using System;
 using System.Collections.Generic;

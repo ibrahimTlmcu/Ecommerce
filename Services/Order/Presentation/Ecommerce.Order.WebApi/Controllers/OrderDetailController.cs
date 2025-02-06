@@ -3,6 +3,7 @@ using Ecommerce.Order.Application.Features.CQRS.Handlers.OrderDetailHandlers;
 using Ecommerce.Order.Application.Features.CQRS.Queries.GetOrderDetailsQueries;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using static Ecommerce.Order.Application.Features.CQRS.Handlers.OrderDetailHandlers.UpdateOrderDetailQueryHandler;
 
 namespace Ecommerce.Order.WebApi.Controllers
 {

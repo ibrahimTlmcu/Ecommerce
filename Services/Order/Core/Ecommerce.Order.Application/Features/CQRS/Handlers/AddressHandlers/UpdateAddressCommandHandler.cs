@@ -10,9 +10,10 @@ namespace Ecommerce.Order.Application.Features.CQRS.Handlers.AddresHandlers
 {
     public  class UpdateAddressCommandHandler
     {
-        private readonly IRepository<Address> _repository;
+        private readonly Ecommerce.Order.Application.Interfaces.IRepository<Address> _repository;
 
-        public UpdateAddressCommandHandler(IRepository<Address> repository)
+
+        public UpdateAddressCommandHandler(Ecommerce.Order.Application.Interfaces.IRepository<Address> repository)
         {
             _repository = repository;
         }

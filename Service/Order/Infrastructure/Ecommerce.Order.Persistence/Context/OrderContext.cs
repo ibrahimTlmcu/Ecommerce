@@ -12,8 +12,7 @@ namespace Ecommerce.Order.Persistence.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server = localhost,1440 ; initial" +
-                "Catalog=EcommerceShopOrderDb;User=Sa ;Password=123456aA*");
+            optionsBuilder.UseSqlServer("Server = localhost,1440;initial Catalog=EcommerceShopOrderDb;User=Sa ;Password=123456aA*");
 
         }
 

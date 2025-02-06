@@ -11,5 +11,11 @@ namespace Ecommerce.Order.Application.Features.Mediator.Queries.OrderingQueries
 {
     public class GetOrderingQuery : IRequest<List<GetOrderingQueryResult>>
     {
+        public int Id { get; set; }
+
+        public GetOrderingQuery(int id)
+        {
+            Id = id;
+        }
     }
 }

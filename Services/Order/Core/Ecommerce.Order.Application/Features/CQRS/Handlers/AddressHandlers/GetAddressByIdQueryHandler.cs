@@ -1,5 +1,6 @@
 ﻿using Ecommerce.Order.Application.Features.CQRS.Queries.AddresQueires;
 using Ecommerce.Order.Application.Features.CQRS.Results.AddressResults;
+using Ecommerce.Order.Application.Interfaces;
 using Ecommerce.Order.Domain.Entities;
 using System;
 using System.Collections.Generic;

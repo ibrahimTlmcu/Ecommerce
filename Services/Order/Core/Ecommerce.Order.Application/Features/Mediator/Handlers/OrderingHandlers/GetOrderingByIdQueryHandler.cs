@@ -1,5 +1,6 @@
 ﻿using Ecommerce.Order.Application.Features.Mediator.Queries.OrderingQueries;
 using Ecommerce.Order.Application.Features.Mediator.Result.OrderingResults;
+using Ecommerce.Order.Application.Interfaces;
 using Ecommerce.Order.Domain.Entities;
 using MediatR;
 using System;
@@ -14,11 +15,11 @@ namespace Ecommerce.Order.Application.Features.Mediator.Handlers.OrderingHandler
     {
         private readonly IRepository<Ordering> _repository;
 
-
         public GetOrderingByIdQueryHandler(IRepository<Ordering> repository)
         {
             _repository = repository;
         }
+
 
         async Task<GetOrderingByIdQueryResult> IRequestHandler<GetOrderingByIdQuery, GetOrderingByIdQueryResult>.Handle(GetOrderingByIdQuery request, CancellationToken cancellationToken)
         {
