@@ -19,13 +19,13 @@ namespace Ecommerce.Order.WebApi.Controllers
             _mediator = mediator;
         }
 
-        //[HttpGet]
+        [HttpGet]
 
-        //public async Task<IActionResult> OrderingList()
-        //{
-        //    var values = await _mediator.Send(new GetOrderingQuery());
-        //    return Ok(values);
-        //}
+        public async Task<IActionResult> OrderingList()
+        {
+            var values = await _mediator.Send(new GetOrderingQuery());
+            return Ok(values);
+        }
 
         [HttpGet("{id}")]
 

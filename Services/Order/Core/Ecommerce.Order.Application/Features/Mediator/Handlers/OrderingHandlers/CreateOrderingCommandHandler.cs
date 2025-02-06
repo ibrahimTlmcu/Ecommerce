@@ -15,6 +15,12 @@ namespace Ecommerce.Order.Application.Features.Mediator.Handlers.OrderingHandler
         private readonly IRepository<Ordering> _repository;
 
 
+        public CreateOrderingCommandHandler(IRepository<Ordering> repository)
+        {
+            _repository = repository;
+        }
+
+
         public async  Task Handle(CreateOrderingCommands request, CancellationToken cancellationToken)
         {
 
