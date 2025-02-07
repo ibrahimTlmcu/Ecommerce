@@ -19,7 +19,7 @@ namespace Ecommerce.IdentityServer.Controllers
         }
 
         [HttpPost]
-        public async Task UserRegister(UserRegisterDto userRegisterDto)
+        public async Task<IActionResult> UserRegister(UserRegisterDto userRegisterDto)
         {
             var values = new ApplicationUser()
             {
@@ -29,7 +29,14 @@ namespace Ecommerce.IdentityServer.Controllers
                 Surname = userRegisterDto.Surname,
             };
             var result = await _userManager.CreateAsync(values,userRegisterDto.Password);
-            
+            if (result.Succeeded)
+            {
+                return Ok("Ekleme islemi basarili");
+            }
+            else
+            {
+                return Ok("Bir hata olustu");
+            }
         }
     }
 }
