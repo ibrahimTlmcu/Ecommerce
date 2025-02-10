@@ -28,6 +28,8 @@ namespace Ecommerce.IdentityServer
 
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddLocalApiAuthentication();//Identity mikroservisi koruma
             services.AddControllersWithViews();
 
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -47,10 +49,11 @@ namespace Ecommerce.IdentityServer
                 // see https://identityserver4.readthedocs.io/en/latest/topics/resources.html
                 options.EmitStaticAudienceClaim = true;
             })
-                .AddInMemoryIdentityResources(Config.IdentityResources)
-                .AddInMemoryApiScopes(Config.ApiScopes)
-                .AddInMemoryClients(Config.Clients)
-                .AddAspNetIdentity<ApplicationUser>();
+                 .AddInMemoryIdentityResources(Config.IdentityResources)   // IdentityResource'lar için
+                 .AddInMemoryApiResources(Config.ApiResources)             // API Resource'lar için
+                 .AddInMemoryApiScopes(Config.ApiScopes)
+                 .AddInMemoryClients(Config.Clients)
+                 .AddAspNetIdentity<ApplicationUser>();
 
             // not recommended for production - you need to store your key material somewhere secure
             builder.AddDeveloperSigningCredential();
@@ -59,7 +62,7 @@ namespace Ecommerce.IdentityServer
                 .AddGoogle(options =>
                 {
                     options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
-                    
+
                     // register your IdentityServer with Google at https://console.developers.google.com
                     // enable the Google+ API
                     // set the redirect URI to https://localhost:5001/signin-google
@@ -79,7 +82,9 @@ namespace Ecommerce.IdentityServer
             app.UseStaticFiles();
 
             app.UseRouting();
+
             app.UseIdentityServer();
+            app.UseAuthentication(); //Identity koruma altina aliyoruz.
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {

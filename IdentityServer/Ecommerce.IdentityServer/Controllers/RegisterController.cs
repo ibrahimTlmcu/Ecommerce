@@ -1,12 +1,16 @@
 ﻿using Ecommerce.IdentityServer.Dtos;
 using Ecommerce.IdentityServer.Models;
+using IdentityServer4.Hosting.LocalApiAuthentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using static IdentityServer4.IdentityServerConstants;
 
 namespace Ecommerce.IdentityServer.Controllers
 {
+    [Authorize(LocalApi.PolicyName)]//IdentityServiceToken ile dogrulama sagliyoruz 
     [Route("api/[controller]")]
     [ApiController]
     public class RegisterController : ControllerBase

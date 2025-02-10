@@ -2,18 +2,24 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
+using IdentityServer4;
 using IdentityServer4.Models;
 using System.Collections.Generic;
+using System.Data.Common;
 
 namespace Ecommerce.IdentityServer
 {
     public static class Config
     {
+
+        //Burda cesıtlı yetkılerı tanımladıkç
+        //Erısım duzeylerı belırlendı
         public static IEnumerable<ApiResource> ApiResources => new ApiResource[]
         {
             new ApiResource("ResourceCatalog"){Scopes ={"CatalogFullPermission","CatalogReadPermission"}},
             new ApiResource("ResourceDiscount"){Scopes={"DiscountFullPermission"}},
             new ApiResource("ResourceOrder"){Scopes={"OrderFullPermission"}},
+            new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
         };
 
         public static IEnumerable<IdentityResource> IdentityResources => new IdentityResource[]
@@ -29,10 +35,59 @@ namespace Ecommerce.IdentityServer
             new ApiScope("CatalogFullPermission","Full authority for catalog permission"),
             new ApiScope("CatalogReadPermission","Reading authority for catalog operatioens"),
             new ApiScope("DiscountFullPermission","Full authority for catalog operatioens"),
-            new ApiScope("OrderFullPermission","Full authority for catalog operatioens")
+            new ApiScope("OrderFullPermission","Full authority for catalog operatioens"),
+            new ApiScope(IdentityServerConstants.LocalApi.ScopeName)
         };
 
+        //Uc farkli kullanici tipi tanimladik
+        public static IEnumerable<Client> Clients => new Client[]
+        {
+            //Visitor yetkilendirme ilerleyince farkli yetkiler eklenecek.
+            new Client
+            {
+                //Bu bilgiler ile Postman uzerinden test edecegiz 
+                //clinet_id client_secret grand_type
+                //Bu kisimlar.
+                ClientId = "EcommerceVisitorId",
+                ClientName = "EcommerceVisitorUser",
+                AllowedGrantTypes=GrantTypes.ClientCredentials,
+                ClientSecrets ={new Secret ("ecommercesecret".Sha256())},
+                AllowedScopes = { "CatalogReadPermission", (IdentityServerConstants.LocalApi.ScopeName) }
+                
+            },
+            //Manager
+            new Client
+            {
+                ClientId ="EcommerceManagerId",
+                ClientName ="EcommerceManagerUser",
+                ClientSecrets ={new Secret ("ecommercesecret".Sha256())},
+                AllowedGrantTypes=GrantTypes.ClientCredentials,
+                AllowedScopes ={ "CatalogFullPermission", "CatalogReadPermission",
+                  IdentityServerConstants.LocalApi.ScopeName,
+                  IdentityServerConstants.StandardScopes.Email,
+                  IdentityServerConstants.StandardScopes.Profile,
+                  IdentityServerConstants.StandardScopes.OpenId,
+                },
+                AccessTokenLifetime = 600
 
+            },
+            //Admin
+            new Client
+            {
+                   ClientId ="EcommerceAdminId",
+                ClientName ="EcommerceAdminUser",
+                ClientSecrets ={new Secret ("ecommercesecret".Sha256())},
+                AllowedGrantTypes=GrantTypes.ClientCredentials,
+                AllowedScopes ={ "CatalogFullPermission", "CatalogReadPermission", "DiscountFullPermission", "OrderFullPermission" ,
+                  IdentityServerConstants.LocalApi.ScopeName,
+                  IdentityServerConstants.StandardScopes.Email,
+                  IdentityServerConstants.StandardScopes.Profile,
+                  IdentityServerConstants.StandardScopes.OpenId,
+                },
+                AccessTokenLifetime = 600
+            }
+            //
+        };
 
         
     }
