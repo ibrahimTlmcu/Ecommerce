@@ -4,10 +4,21 @@ using Ecommerce.Catalog.Services.ProductDetailServices;
 using Ecommerce.Catalog.Services.ProductImageServices;
 using Ecommerce.Catalog.Services.ProductServices;
 using Ecommerce.Catalog.Settings;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+{
+    opt.Authority = builder.Configuration["IdentityServerUrl"];//bununla kullan
+    opt.Audience = "ResourceCatalog";//config tarafinda hangi key dinleniyorsa.
+    //appsettýng ýcýne ekledýk
+    //"IdentityServerUrl": "http://localhost:5001", bu servýsýn kalktigi yer
+    opt.RequireHttpsMetadata = false;
+});
+//koruma ýcýn bearer  yapýlandýrmasý
 
 
 // Add services to the container.
@@ -40,7 +51,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
