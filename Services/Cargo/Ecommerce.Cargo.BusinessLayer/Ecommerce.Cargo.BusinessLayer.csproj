@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Ecommerce.Cargo.DataAccesLayer\Ecommerce.Cargo.DataAccesLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ValidationRules\" />
+    <Folder Include="Extension\" />
+  </ItemGroup>
+
 </Project>
