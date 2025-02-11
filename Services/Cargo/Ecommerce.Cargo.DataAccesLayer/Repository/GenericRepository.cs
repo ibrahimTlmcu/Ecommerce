@@ -14,6 +14,7 @@ namespace Ecommerce.Cargo.DataAccesLayer.Repository
 
         public GenericRepository(CargoContext context)
         {
+            _context = context; 
         }
 
         public void Delete(int id)

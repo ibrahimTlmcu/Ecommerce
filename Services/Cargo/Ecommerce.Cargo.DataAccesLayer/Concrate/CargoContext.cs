@@ -12,7 +12,7 @@ namespace Ecommerce.Cargo.DataAccesLayer.Concrate
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server = localhost,1441;initial Catalog=EcommerceShopCargoDb;User=Sa ;Password=123456aA*");
+            optionsBuilder.UseSqlServer("Server=localhost,1441;initial Catalog=EcommerceShopCargoDb;User=Sa;Password=123456aA*");
 
         }
 
