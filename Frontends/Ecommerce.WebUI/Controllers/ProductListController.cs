@@ -8,5 +8,10 @@ namespace Ecommerce.WebUI.Controllers
         {
             return View();
         }
+
+        public IActionResult ProductDetail()
+        {
+            return View();
+        }
     }
 }
