@@ -21,7 +21,6 @@ namespace Ecommerce.Basket.Services
         {
             var existBasket = await _redisService.GetDb().StringGetAsync(userId);
             return JsonSerializer.Deserialize<BasketTotalDto>(existBasket);
-            //null olabi.ir diye yesil uyari.
         }
         public async Task SaveBasket(BasketTotalDto basketTotalDto)
         {

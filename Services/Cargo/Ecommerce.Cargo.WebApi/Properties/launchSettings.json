@@ -12,9 +12,9 @@
     "Ecommerce.Cargo.WebApi": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchBrowser": false,
+      "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7190; ,
+      "applicationUrl": "http://localhost:7190" ,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

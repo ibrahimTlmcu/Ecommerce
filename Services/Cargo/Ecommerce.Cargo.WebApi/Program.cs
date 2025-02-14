@@ -9,9 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
 {
-    opt.Authority = builder.Configuration["IdentityServerUrl"];
+    opt.Authority = "http://localhost:5001";
     opt.Audience = "ResourceCargo";
     opt.RequireHttpsMetadata = false;
+    
 });
 builder.Services.AddDbContext<CargoContext>();
 builder.Services.AddScoped<ICargoCompanyDal, EfCargoCompanyDal>();
@@ -39,7 +40,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

@@ -16,11 +16,11 @@ namespace Ecommerce.IdentityServer
         //Erısım duzeylerı belırlendı
         public static IEnumerable<ApiResource> ApiResources => new ApiResource[]
         {
-            new ApiResource("ResourceCatalog"){Scopes ={"CatalogFullPermission","CatalogReadPermission"}},
-            new ApiResource("ResourceDiscount"){Scopes={"DiscountFullPermission"}},
-            new ApiResource("ResourceOrder"){Scopes={"OrderFullPermission"}},
-            new ApiResource("ResoruceCargo"){Scopes={"CargoFullPermission"}},
-             new ApiResource("ResourceBasket"){Scopes={"BasketFullPermission"} },
+            new ApiResource("ResourceCatalog"){Scopes={"CatalogFullPermission","CatalogReadPermission"} },
+           new ApiResource("ResourceDiscount"){Scopes={"DiscountFullPermission"} },
+           new ApiResource("ResourceOrder"){Scopes={"OrderFullPermission"}},
+           new ApiResource("ResourceCargo"){Scopes={"CargoFullPermission"} },
+           new ApiResource("ResourceBasket"){Scopes={"BasketFullPermission"} },
             new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
         };
 
@@ -65,7 +65,7 @@ namespace Ecommerce.IdentityServer
                 ClientId ="EcommerceManagerId",
                 ClientName ="EcommerceManagerUser",
                 ClientSecrets ={new Secret ("ecommercesecret".Sha256())},
-                AllowedGrantTypes=GrantTypes.ClientCredentials,
+                AllowedGrantTypes=GrantTypes.ResourceOwnerPassword,
                 AllowedScopes ={ "CatalogFullPermission", "CatalogReadPermission",
                   IdentityServerConstants.LocalApi.ScopeName,
                   IdentityServerConstants.StandardScopes.Email,
@@ -81,9 +81,12 @@ namespace Ecommerce.IdentityServer
                 ClientId ="EcommerceAdminId",
                 ClientName ="EcommerceAdminUser",
                 ClientSecrets ={new Secret ("ecommercesecret".Sha256())},
-                AllowedGrantTypes=GrantTypes.ClientCredentials,
-                AllowedScopes ={ "CatalogFullPermission", "CatalogReadPermission", "DiscountFullPermission",
-                    "OrderFullPermission" ,"CargoFullPermission","BasketFullPermission",
+                AllowedGrantTypes=GrantTypes.ResourceOwnerPassword,        
+                AllowedScopes={ "CatalogFullPermission", "OrderFullPermission","CatalogReadPermission", 
+                    "DiscountFullPermission","CargoFullPermission",
+                    "BasketFullPermission","OcelotFullPermission","CommentFullPermission",
+                    "PaymentFullPermission","ImageFullPermission","CargoFullPermission",
+
                   IdentityServerConstants.LocalApi.ScopeName,
                   IdentityServerConstants.StandardScopes.Email,
                   IdentityServerConstants.StandardScopes.Profile,

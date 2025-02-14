@@ -12,9 +12,9 @@
     "Ecommerce.Basket": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchBrowser": false,
+      "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7246;" ,
+      "applicationUrl": "http://localhost:7246;" ,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

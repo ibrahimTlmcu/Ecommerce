@@ -22,7 +22,7 @@ namespace Ecommerce.Basket.Controllers
         [HttpGet]
         public async Task<IActionResult> GetMyBasketDetail()
         {
-            var user = User.Claims;
+            var user = User.Claims;//Visual Stduio tarafinda gormek icin 
             var values = await _basketService.GetBasket(_loginService.GetUserId);
             return Ok(values);
         }

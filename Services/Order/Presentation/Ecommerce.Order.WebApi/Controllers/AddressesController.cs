@@ -35,7 +35,7 @@ namespace Ecommerce.Order.WebApi.Controllers
 
         public async Task<IActionResult> AddressList()
         {
-            var values = _getAddressQueryHandler.Handle();
+            var values = await _getAddressQueryHandler.Handle();
             return Ok(values);
         }
 
