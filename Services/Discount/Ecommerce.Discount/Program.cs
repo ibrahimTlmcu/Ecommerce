@@ -1,6 +1,7 @@
 using Ecommerce.Discount.Context;
 using Ecommerce.Discount.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
@@ -10,6 +11,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     //appsettýng ýcýne ekledýk
     //"IdentityServerUrl": "http://localhost:5001", bu servýsýn kalktigi yer
     opt.RequireHttpsMetadata = false;
+    opt.Authority = "http://localhost:5001";
 });
 // Add services to the container.
 

@@ -16,7 +16,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     opt.Audience = "ResourceCatalog";//config tarafinda hangi key dinleniyorsa.
     //appsettýng ýcýne ekledýk
     //"IdentityServerUrl": "http://localhost:5001", bu servýsýn kalktigi yer
-    opt.RequireHttpsMetadata = false;
+    opt.RequireHttpsMetadata = false;// Http e cektýk bu yuzden opt ýcýnde ekledýk
 });
 //koruma ýcýn bearer  yapýlandýrmasý
 

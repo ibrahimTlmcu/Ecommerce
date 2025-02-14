@@ -30,6 +30,7 @@ namespace Ecommerce.IdentityServer
         {
 
             services.AddLocalApiAuthentication();//Identity mikroservisi koruma
+            //Token alma
             services.AddControllersWithViews();
 
             services.AddDbContext<ApplicationDbContext>(options =>

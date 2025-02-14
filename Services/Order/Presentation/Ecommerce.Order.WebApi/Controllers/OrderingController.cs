@@ -3,11 +3,13 @@ using Ecommerce.Order.Application.Features.Mediator.Commands.OrderingCommands;
 using Ecommerce.Order.Application.Features.Mediator.Handlers.OrderingHandlers;
 using Ecommerce.Order.Application.Features.Mediator.Queries.OrderingQueries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce.Order.WebApi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class OrderingController : ControllerBase
