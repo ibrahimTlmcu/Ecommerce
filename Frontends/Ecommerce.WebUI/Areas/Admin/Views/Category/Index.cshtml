@@ -1,4 +1,4 @@
-﻿
+﻿@model List<Ecommerce.DtoLayer.CatalogDtos.CategoryDtos.ResultCategoryDto>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
@@ -13,36 +13,33 @@
                     <table class="table">
                         <caption>
                             Optional table caption.
-                        </caption>
+                        </caption> 
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
+                                <th>Kategori Adi</th>
+                                <th>Kategoriye Ait Urunler</th>
+                                <th>Sil</th>
+                                <th>Guncelle</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>twitter</td>
-                            </tr>
+                            @foreach(var item in Model)
+                            {
+                                <tr>
+                                    <th scope="row">@item.CategoryId</th>
+                                    <td>@item.CategoryName</td>
+                     
+                                    <td><a href="#" class="btn btn-warning">Kategoriye Ait Urunler</a></td>
+                                    <td><a href="/Admin/Category/DeleteCategory/@item.CategoryId" class="btn btn-danger">Sil</a></td>
+                                    <td><a href="/Admin/Category/UpdateCategory/@item.CategoryId" class="btn btn-succes">Guncelle</a></td>
+                                </tr>
+                            }
+                           
+                      
                         </tbody>
                     </table>
+                    <a href="/Admin/Category/CreateCategory/" class="btn btn-primary"> Yeni Kategori Girisi </a>
                 </div>
             </div>
         </div>
