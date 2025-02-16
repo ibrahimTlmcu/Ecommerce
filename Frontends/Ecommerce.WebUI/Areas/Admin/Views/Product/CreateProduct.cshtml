@@ -1,0 +1,44 @@
+﻿@model CreateProductDto
+@{
+    ViewData["Title"] = "CreateProduct";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<h1>CreateProduct</h1>
+
+
+<section class="content container-fluid">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="chart-box">
+                <h4>Kategori Ekleme Sayfası</h4>
+                <br />
+                <div class="bs-example" data-example-id="bordered-table">
+
+                    <form method="post">
+                        <label>Urun Adı</label>
+                        <input type="text" class="form-control" asp-for="ProductName" />
+                        <br />
+                        <label>Urun Fiyati</label>
+                        <input type="text" class="form-control" asp-for="ProductPrice" />
+                        <br />
+                        <label>Urun Gorsel</label>
+                        <input type="text" class="form-control" asp-for="ProductImageUrl" />
+                        <br />
+                        <label>Urun Kategorisi </label>
+                        Buraya DrapDown Gelecek
+                        <br />
+                        <label>Urun Adı</label>
+                        <input type="text" class="form-control" asp-for="ProductName" />
+                        <br />
+                    
+
+                        <br />
+                        <button class="btn btn-primary">Kategoriyi Ekle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,10 +1,11 @@
-﻿@model List<Ecommerce.DtoLayer.CatalogDtos.CategoryDtos.ResultCategoryDto>
+﻿@model List<ResultProductDto>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
-
     int count = 0;
 }
+
+
 <section class="content container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -19,8 +20,9 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Kategori Adi</th>
-                                <th>Kategoriye Ait Urunler</th>
+                                <th>Urun Adi</th>
+                                <th>Urun Fiyati</th>
+                                <th></th>
                                 <th>Sil</th>
                                 <th>Guncelle</th>
                             </tr>
@@ -32,18 +34,19 @@
                                 count++;
                                 <tr>
                                     <th scope="row">@count</th>
-                                    <td>@item.CategoryName</td>
+                                    <td>@item.ProductName</td>
+                                    <td>@item.ProductPrice</td>
 
                                     <td><a href="#" class="btn btn-warning">Kategoriye Ait Urunler</a></td>
-                                    <td><a href="/Admin/Category/DeleteCategory/@item.CategoryId" class="btn btn-danger">Sil</a></td>
-                                    <td><a href="/Admin/Category/UpdateCategory/@item.CategoryId" class="btn btn-success">Guncelle</a></td>
+                                    <td><a href="/Admin/Category/DeleteProduct/@item.ProductId" class="btn btn-danger">Sil</a></td>
+                                    <td><a href="/Admin/Category/UpdateProduct/@item.ProductId" class="btn btn-success">Guncelle</a></td>
                                 </tr>
                             }
 
 
                         </tbody>
                     </table>
-                    <a href="/Admin/Category/CreateCategory" class="btn btn-primary"> Yeni Kategori Girisi </a>
+                    <a href="/Admin/Product/CreateProduct" class="btn btn-primary"> Yeni Urun Girisi </a>
                 </div>
             </div>
         </div>

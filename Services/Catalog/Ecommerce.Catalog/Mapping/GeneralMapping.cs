@@ -23,11 +23,13 @@ namespace Ecommerce.Catalog.Mapping
             CreateMap<Category,CreateCategoryDto>().ReverseMap();
             CreateMap<Category,UpdateCategoryDto>().ReverseMap();
             CreateMap<Category,GetByIdCategoryDto>().ReverseMap();
+            CreateMap<UpdateCategoryDto, Category>();
 
             CreateMap<Product,ResultProductDto>().ReverseMap();
             CreateMap<Product,CreateProductDto>().ReverseMap();
             CreateMap<Product,UpdateProductDto>().ReverseMap();
             CreateMap<Product,GetByIdProductDto>().ReverseMap();
+
 
 
             CreateMap<ProductDetail,ResultProductDetailDto>().ReverseMap();

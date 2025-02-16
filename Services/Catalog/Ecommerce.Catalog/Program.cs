@@ -1,4 +1,5 @@
 using Ecommerce.Catalog.Dtos.ProductDetailDtos;
+using Ecommerce.Catalog.Mapping;
 using Ecommerce.Catalog.Services.CategoryServices;
 using Ecommerce.Catalog.Services.ProductDetailServices;
 using Ecommerce.Catalog.Services.ProductImageServices;
@@ -29,6 +30,8 @@ builder.Services.AddScoped<IProductDetailService, ProductDetailService>();
 builder.Services.AddScoped<IProductImageService, ProductImageService>();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+builder.Services.AddAutoMapper(typeof(GeneralMapping));
+
 
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));//app.json icindeki keyim
 builder.Services.AddScoped<IDatabaseSettings>(sp =>
