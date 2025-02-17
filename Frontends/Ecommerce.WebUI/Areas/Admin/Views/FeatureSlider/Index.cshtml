@@ -18,29 +18,20 @@
                         <caption>
                             Optional table caption.
                         </caption>
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Gorsel Basligi</th>
-                                <th>Sil</th>
-                                <th>Guncelle</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            @foreach (var item in Model)
-                            {
-                                count++;
+                        @foreach(var item in Model)
+                        {
+                            <thead>
                                 <tr>
-                                    <th scope="row">@count</th>
-                                    <td>@item.Title</td>
-
-                                    <td><a href="#" class="btn btn-warning">Kategoriye Ait Urunler</a></td>
-                                    <td><a href="/Admin/FeatureSlider/DeleteFeatureSlider/@item.FeatureSliderId" class="btn btn-danger">Sil</a></td>
-                                    <td><a href="/Admin/FeatureSlider/UpdateFeatureSlider/@item.FeatureSliderId" class="btn btn-success">Guncelle</a></td>
+                                    <th>#</th>
+                                    <th>@item.Title</th>
+                                    <th>@item.ImageUrl</th>
+                                    <th>Guncelle</th>
                                 </tr>
-                            }
-
+                            </thead>
+                            
+                        }
+                      
+                        <tbody>
 
                         </tbody>
                     </table>

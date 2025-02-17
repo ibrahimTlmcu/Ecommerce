@@ -3,10 +3,12 @@ using Ecommerce.Catalog.Dtos.CategoryDtos;
 using Ecommerce.Catalog.Dtos.FeatureSliderDtos;
 using Ecommerce.Catalog.Entities;
 using Ecommerce.Catalog.Settings;
+using Microsoft.AspNetCore.Authorization;
 using MongoDB.Driver;
 
 namespace Ecommerce.Catalog.Services.FeatureSliderServices
 {
+    [AllowAnonymous]
     public class FeatureSliderService : IFeatureSliderService
     {
         private readonly IMongoCollection<FeatureSlider> _featureSliderCollection;

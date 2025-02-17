@@ -1,10 +1,15 @@
 ﻿using Ecommerce.DtoLayer.CatalogDtos.FeatureSliderDto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
 
 namespace Ecommerce.WebUI.Areas.Admin.Controllers
 {
+    [Area("Admin")]
+    [AllowAnonymous]
+    [Route("Admin/FeatureSlider")]
+
     public class FeatureSliderController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
@@ -12,6 +17,8 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
         {
             _httpClientFactory = httpClientFactory;
         }
+
+
         [Route("Index")]
         public async Task<IActionResult> Index()
         {
@@ -19,17 +26,13 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
 
 
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7078/api/FeatureSliders/");
-
+            var responseMessage = await client.GetAsync("https://localhost:7078/api/FeatureSlider");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 var values = JsonConvert.DeserializeObject<List<ResultFeatureSliderDto>>(jsonData);
                 return View(values);
             }
-            //Serialeze Metinde => Jsona donusum yapiyor Ekle Guncelle daha cok 
-            //Deserialeize Jsondan => Metine  Listele idye gore getir daha cok 
-
 
 
             return View();
@@ -59,7 +62,7 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
             //json formatina donusturduk
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             //Bir contentc olarak atadim once turu sonra dili sonra mediator
-            var responseMessage = await client.PostAsync("https://localhost:7078/api/FeatureSliders/", stringContent);
+            var responseMessage = await client.PostAsync("https://localhost:7078/api/FeatureSlider/", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "FeatureSlider", new { area = "Admin" });
@@ -70,7 +73,7 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteFeatureSlider(string id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync("https://localhost:7078/api/FeatureSliders?id=" + id);
+            var responseMessage = await client.DeleteAsync("https://localhost:7078/api/FeatureSlider?id=" + id);
 
             if (responseMessage.IsSuccessStatusCode)
             {
@@ -83,7 +86,7 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> UpdateFeatureSlider(string id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7078/api/FeatureSliders/" + id);
+            var responseMessage = await client.GetAsync("https://localhost:7078/api/FeatureSlider/" + id);
 
             if (responseMessage.IsSuccessStatusCode)
             {
@@ -100,7 +103,7 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateFeatureSliderDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("https://localhost:7078/api/FeatureSliders/", stringContent);
+            var responseMessage = await client.PutAsync("https://localhost:7078/api/FeatureSlider/", stringContent);
 
             if (responseMessage.IsSuccessStatusCode)
             {
