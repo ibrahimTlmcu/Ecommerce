@@ -14,5 +14,6 @@ namespace Ecommerce.DtoLayer.CatalogDtos.ProductDtos
         public string ProductDescription { get; set; }
 
         public string CategoryId { get; set; }
+
     }
 }

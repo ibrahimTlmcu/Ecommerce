@@ -1,10 +1,11 @@
-﻿@model List<ResultProductDto>
+﻿@model List<ResultProductWithCategoryDto>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "ProductListWithCategory";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
     int count = 0;
 }
 
+<h1>ProductListWithCategory</h1>
 
 <section class="content container-fluid">
     <div class="row">
@@ -22,7 +23,7 @@
                                 <th>#</th>
                                 <th>Urun Adi</th>
                                 <th>Urun Fiyati</th>
-                                <th></th>
+                                <th>Urun Kategory</th>
                                 <th>Sil</th>
                                 <th>Guncelle</th>
                             </tr>
@@ -36,17 +37,18 @@
                                     <th scope="row">@count</th>
                                     <td>@item.ProductName</td>
                                     <td>@item.ProductPrice</td>
+                                    <td>@item.Category.CategoryName</td>
 
                                     <td><a href="#" class="btn btn-warning">Kategoriye Ait Urunler</a></td>
-                                    <td><a href="/Admin/Product/DeleteProduct/@item.ProductId" class="btn btn-danger">Sil</a></td>
-                                    <td><a href="/Admin/Product/UpdateProduct/@item.ProductId" class="btn btn-success">Guncelle</a></td>
+                                    <td><a href="/Admin/Category/DeleteCategory/@item.CategoryId" class="btn btn-danger">Sil</a></td>
+                                    <td><a href="/Admin/Category/UpdateCategory/@item.CategoryId" class="btn btn-success">Guncelle</a></td>
                                 </tr>
                             }
 
 
                         </tbody>
                     </table>
-                    <a href="/Admin/Product/CreateProduct" class="btn btn-primary"> Yeni Urun Girisi </a>
+                    <a href="/Admin/Category/CreateCategory" class="btn btn-primary"> Yeni Kategori Girisi </a>
                 </div>
             </div>
         </div>

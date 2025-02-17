@@ -42,7 +42,7 @@ namespace Ecommerce.Catalog.Mapping
             CreateMap<ProductImages,UpdateProductImageDto>().ReverseMap();
             CreateMap<ProductImages,GetByIdProductImageDto>().ReverseMap();
 
-
+            CreateMap<Product,ResultProductWithCategoryDto>().ReverseMap();
 
 
         }
