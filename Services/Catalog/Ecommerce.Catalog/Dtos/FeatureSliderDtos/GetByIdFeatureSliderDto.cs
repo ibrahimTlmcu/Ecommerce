@@ -1,6 +1,6 @@
 ﻿namespace Ecommerce.Catalog.Dtos.FeatureSliderDtos
 {
-    public class GetByIdSliderDto
+    public class GetByIdFeatureSliderDto
     {
         public string FeatureSliderId { get; set; }
         public string Title { get; set; }

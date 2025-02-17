@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Ecommerce.Catalog.Dtos.CategoryDtos;
+using Ecommerce.Catalog.Dtos.FeatureSliderDtos;
 using Ecommerce.Catalog.Dtos.ProductDetailDtos;
 
 using Ecommerce.Catalog.Dtos.ProductDto;
@@ -45,6 +46,12 @@ namespace Ecommerce.Catalog.Mapping
             CreateMap<Product,ResultProductWithCategoryDto>().ReverseMap();
 
 
+
+            CreateMap<FeatureSlider,ResultFeatureSliderDto>().ReverseMap();
+            CreateMap<FeatureSlider, CreateFeatureSliderDto>().ReverseMap();
+            CreateMap<FeatureSlider, UpdateFeatureSliderDto>().ReverseMap();
+            CreateMap<FeatureSlider, GetByIdFeatureSliderDto>().ReverseMap();
+       
         }
     }
 }

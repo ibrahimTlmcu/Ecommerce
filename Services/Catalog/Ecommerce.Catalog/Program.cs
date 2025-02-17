@@ -1,6 +1,7 @@
 using Ecommerce.Catalog.Dtos.ProductDetailDtos;
 using Ecommerce.Catalog.Mapping;
 using Ecommerce.Catalog.Services.CategoryServices;
+using Ecommerce.Catalog.Services.FeatureSliderServices;
 using Ecommerce.Catalog.Services.ProductDetailServices;
 using Ecommerce.Catalog.Services.ProductImageServices;
 using Ecommerce.Catalog.Services.ProductServices;
@@ -28,6 +29,7 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IProductService,ProductService>();
 builder.Services.AddScoped<IProductDetailService, ProductDetailService>();
 builder.Services.AddScoped<IProductImageService, ProductImageService>();
+builder.Services.AddScoped<IFeatureSliderService,FeatureSliderService>(); 
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddAutoMapper(typeof(GeneralMapping));
