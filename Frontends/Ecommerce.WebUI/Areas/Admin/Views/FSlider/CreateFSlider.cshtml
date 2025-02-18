@@ -1,38 +1,33 @@
-﻿@model UpdateFeatureSliderDto
+﻿@model CreateFeatureSliderDto
 @{
-    ViewData["Title"] = "UpdateFeatureSlider";
+    ViewData["Title"] = "CreateFSlider";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
 }
-
-<h1>UpdateFeatureSlider</h1>
-
 
 <section class="content container-fluid">
     <div class="row">
 
         <div class="col-md-12">
             <div class="chart-box">
-                <h4>One Cikan Slider Gorsel Guncelleme Sayfasi</h4>
+                <h4>Öne Çıkan Slider Görseli Ekleme Sayfası</h4>
                 <br />
                 <div class="bs-example" data-example-id="bordered-table">
 
                     <form method="post">
-                        <input type="hidden" asp-for="FeatureSliderId" />
-                        <label>Gorsel Basligi</label>
+                        <label>Görsel Başlığı</label>
                         <input type="text" class="form-control" asp-for="Title" />
                         <br />
-
-                        <label>Gorsel Aciklamasi</label>
+                        <label>Görsel Açıklaması</label>
                         <input type="text" class="form-control" asp-for="Description" />
                         <br />
-
-                        <label>Gorsel Link</label>
+                        <label>Görsel Linki</label>
                         <input type="text" class="form-control" asp-for="ImageUrl" />
                         <br />
-                        <button class="btn btn-primary">Gorseli Guncelle</button>
+                        <button class="btn btn-primary">Öne Çıkan Slider Görseli Ekle</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </section>
+

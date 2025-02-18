@@ -21,7 +21,6 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
      
-
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync("https://localhost:7078/api/Categories");
 
