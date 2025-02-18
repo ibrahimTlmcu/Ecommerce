@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Runtime" Version="2.3.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.18" />
   </ItemGroup>
 
@@ -30,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Services\Catalog\Ecommerce.Catalog\Ecommerce.Catalog.csproj" />
     <ProjectReference Include="..\Ecommerce.DtoLayer\Ecommerce.DtoLayer.csproj" />
   </ItemGroup>
 

@@ -15,4 +15,8 @@
     <Folder Include="Extension\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Runtime" Version="2.3.0" />
+  </ItemGroup>
+
 </Project>
