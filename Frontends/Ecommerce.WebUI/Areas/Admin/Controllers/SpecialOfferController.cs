@@ -68,6 +68,9 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
 
         ///https://localhost:7078/api/SpecialOffer?id=67b5a36e3e215ab77cb6c723 api url
         //https://localhost:7165/Admin/SpecialOffer/DeleteSpecialOffer/67b4ff1dc72f143465a71977 benim gonderdigim
+
+
+
         [HttpPost("DeleteSpecialOffer/{id}")]
         public async Task<IActionResult> DeleteSpecialOffer(string id)
         {

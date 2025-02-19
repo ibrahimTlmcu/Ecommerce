@@ -1,0 +1,38 @@
+﻿@model Ecommerce.DtoLayer.CatalogDtos.FeatureDtos.CreateFeatureDto
+@{
+    ViewData["Title"] = "CreateSpecialOffer";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+
+
+<section class="content container-fluid">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="chart-box">
+                <h4>One Cikan Alan Ekleme Sayfası</h4>
+                <br />
+                <div class="bs-example" data-example-id="bordered-table">
+
+                    <form method="post">
+                        <label>Alan Basligi</label>
+                        <input type="text" class="form-control" asp-for="Title" />
+                        <br />
+
+                    
+
+                        <label>One Cikan Alan Ikonu</label>
+                        <input type="text" class="form-control" asp-for="Icon" />
+                        <br />
+
+
+
+                        <br />
+                        <button class="btn btn-primary">One Cikan Alani  Ekle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
