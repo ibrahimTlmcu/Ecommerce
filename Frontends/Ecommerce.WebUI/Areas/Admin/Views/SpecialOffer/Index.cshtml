@@ -1,12 +1,11 @@
-﻿@model List<ResultProductDto>
+﻿@model List<ResultSpecialOfferDto>
 @{
     ViewData["Title"] = "Index";
+
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
 
     int count = 0;
 }
-
-
 <section class="content container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -20,37 +19,57 @@
                         </caption>
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Urun Adi</th>
-                                <th>Urun Fiyati</th>
-                                <th></th>
+                             
+                                <th>Teklif Basligi</th>
+                                <th>Teklif Alt Basligi</th>
                                 <th>Sil</th>
                                 <th>Guncelle</th>
                             </tr>
                         </thead>
                         <tbody>
-                             
+                            
+
                             @foreach (var item in Model)
                             {
                                 count++;
+                                
                                 <tr>
-                                    <th scope="row">@count</th>
-                                    <td>@item.ProductName</td>
-                                    <td>@item.ProductPrice</td>
+                                   
+                                    <td>@item.Title</td>
+                                    <td>@item.SubTitle</td>
 
-                                    <td><a href="#" class="btn btn-warning">Kategoriye Ait Urunler</a></td>
-                                    <td><a href="/Admin/Product/DeleteProduct/@item.ProductId" class="btn btn-danger">Sil</a></td>
-                                    <td><a href="/Admin/Product/UpdateProduct/@item.ProductId" class="btn btn-success">Guncelle</a></td>
+
+                                    <td><button onclick="deleteSpecialOffer('@item.SpecialOfferId')" class="btn btn-danger">Sil</button></td>
+                                    <td><a href="/Admin/SpecialOffer/UpdateSpecialOffer/@item.SpecialOfferId" class="btn btn-success">Guncelle</a></td>
                                 </tr>
                             }
 
 
                         </tbody>
                     </table>
-                    <a href="/Admin/Product/CreateProduct" class="btn btn-primary"> Yeni Urun Girisi </a>
+                    <a href="/Admin/SpecialOffer/CreateSpecialOffer" class="btn btn-primary"> Yeni Kategori Girisi </a>
                 </div>
             </div>
         </div>
 
     </div>
 </section>
+
+<script>
+    function deleteSpecialOffer(id) {
+        fetch(`/Admin/SpecialOffer/DeleteSpecialOffer/${id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = '/Admin/SpecialOffer/Index'; // Başarılıysa yönlendir
+                } else {
+                    alert('Silme işlemi başarısız!');
+                }
+            });
+    }
+</script>
+

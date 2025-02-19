@@ -1,7 +1,13 @@
-﻿namespace Ecommerce.Catalog.Entities
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+
+namespace Ecommerce.Catalog.Entities
 {
     public class SpecialOffer
     {
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+
         public string SpecialOfferId { get; set; }
 
         public string Title { get; set; }

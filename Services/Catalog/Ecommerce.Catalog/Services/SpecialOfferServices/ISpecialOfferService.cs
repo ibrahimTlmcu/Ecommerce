@@ -2,7 +2,7 @@
 
 namespace Ecommerce.Catalog.Services.SpecialOfferServices
 {
-    public interface ISpecialOfferSerivce
+    public interface ISpecialOfferService
     {
         Task<List<ResultSpecialOfferDto>> GettAllSpecialOfferAsync();
         Task CreateSpecialOfferAsync(CreateSpecialOfferDto createSpecialOfferDto);

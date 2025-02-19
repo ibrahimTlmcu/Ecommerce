@@ -67,6 +67,8 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
             }
             return View();
         }
+
+
         [Route("DeleteCategory/{id}")]
         public async Task <IActionResult> DeleteCategory(string id)
         {
@@ -79,6 +81,9 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
             }
             return View();
         }
+
+
+
         [Route("UpdateCategory/{id}")]
         [HttpGet]
         public async Task<IActionResult> UpdateCategory(string id)

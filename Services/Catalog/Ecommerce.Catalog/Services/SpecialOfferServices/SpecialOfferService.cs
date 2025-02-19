@@ -6,7 +6,7 @@ using MongoDB.Driver;
 
 namespace Ecommerce.Catalog.Services.SpecialOfferServices
 {
-    public class SpecialOfferService : ISpecialOfferSerivce
+    public class SpecialOfferService : ISpecialOfferService
     {
         private readonly IMongoCollection<SpecialOffer> _SpecialOfferCollection;
 

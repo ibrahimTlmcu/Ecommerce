@@ -5,6 +5,7 @@ using Ecommerce.Catalog.Services.FeatureSliderServices;
 using Ecommerce.Catalog.Services.ProductDetailServices;
 using Ecommerce.Catalog.Services.ProductImageServices;
 using Ecommerce.Catalog.Services.ProductServices;
+using Ecommerce.Catalog.Services.SpecialOfferServices;
 using Ecommerce.Catalog.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
@@ -29,7 +30,8 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IProductService,ProductService>();
 builder.Services.AddScoped<IProductDetailService, ProductDetailService>();
 builder.Services.AddScoped<IProductImageService, ProductImageService>();
-builder.Services.AddScoped<IFeatureSliderService,FeatureSliderService>(); 
+builder.Services.AddScoped<IFeatureSliderService,FeatureSliderService>();
+builder.Services.AddScoped<ISpecialOfferService, SpecialOfferService>();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddAutoMapper(typeof(GeneralMapping));

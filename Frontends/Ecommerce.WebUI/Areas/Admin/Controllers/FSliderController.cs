@@ -95,13 +95,12 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> UpdateFSlider(string id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7078/api/FeatureSliders?id={id}");
+            var responseMessage = await client.GetAsync("https://localhost:7078/api/FeatureSliders/" + id);
 
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<UpdateFeatureSliderDto>>(jsonData);
-
+                var values = JsonConvert.DeserializeObject<UpdateFeatureSliderDto>(jsonData);
                 return View(values);
             }
             return View();
