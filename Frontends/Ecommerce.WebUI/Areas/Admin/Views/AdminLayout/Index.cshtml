@@ -23,6 +23,7 @@
             @await Component.InvokeAsync("_AdminLayoutMainSectionViewbagComponentPartial")
     <!-- Main content -->
    @RenderBody()
+            @RenderSection("Scripts", required: false)
     <!-- content --> 
   </div>
   <!-- content-wrapper --> 

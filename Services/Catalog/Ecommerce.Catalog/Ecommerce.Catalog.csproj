@@ -20,4 +20,8 @@
     <Folder Include="Dtos\Spaci\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Frontends\Ecommerce.DtoLayer\Ecommerce.DtoLayer.csproj" />
+  </ItemGroup>
+
 </Project>

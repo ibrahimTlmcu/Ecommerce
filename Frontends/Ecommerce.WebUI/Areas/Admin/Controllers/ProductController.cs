@@ -108,7 +108,7 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
 
             
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7078/api/Products/" + id);
+            var responseMessage = await client.GetAsync("https://localhost:7078/api/Product/" + id);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
