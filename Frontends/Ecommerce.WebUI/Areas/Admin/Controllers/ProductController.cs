@@ -68,7 +68,7 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
             var responseMessage = await client.PostAsync("https://localhost:7078/api/Product", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index", "Product", new { area = "Admin" });
+                return RedirectToAction("ProductListWithCategory", "Product", new { area = "Admin" });
             }
             return View();
         }

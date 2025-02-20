@@ -39,16 +39,21 @@
                                     <td>@item.ProductPrice</td>
                                     <td>@item.Category.CategoryName</td>
 
-                                    <td><a href="#" class="btn btn-warning">Kategoriye Ait Urunler</a></td>
-                                    <td><a href="/Admin/Category/DeleteCategory/@item.CategoryId" class="btn btn-danger">Sil</a></td>
-                                    <td><a href="/Admin/Category/UpdateCategory/@item.CategoryId" class="btn btn-success">Guncelle</a></td>
+                                    <th scope="row">@count</th>
+                                    <td>@item.ProductName</td>
+                                    <td>@item.ProductPrice</td>
+                                    <td>@item.Category.CategoryName</td>
+                                    <td><a href="/Admin/Product/DeleteProduct/@item.ProductId" class="btn btn-danger">Sil</a></td>
+                                    <td><a href="/Admin/Product/UpdateProduct/@item.ProductId" class="btn btn-success">Güncelle</a></td>
+                                    <td><a href="/Admin/ProductImage/ProductImageDetail/@item.ProductId" class="btn btn-warning">Ürün Görselleri</a></td>
+                                    <td><a href="/Admin/ProductDetail/UpdateProductDetail/@item.ProductId" class="btn btn-info">Açıklama ve Bilgi</a></td>
                                 </tr>
                             }
 
 
                         </tbody>
                     </table>
-                    <a href="/Admin/Product/CreateProduct" class="btn btn-primary"> Yeni Kategori Girisi </a>
+                    <a href="/Admin/Product/CreateProduct" class="btn btn-primary"> Yeni Urun Girisi </a>
                 </div>
             </div>
         </div>

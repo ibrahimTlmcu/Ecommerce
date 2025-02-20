@@ -12,6 +12,7 @@
         public string ProductDetailCollectionName { get ; set ; }
         public string FeatureSliderCollectionName { get; set; }
         public string SpecialOfferCollectionName { get; set; }
+        public string OfferDiscountsCollectionName { get; set; }
         public string FeatureCollectionName { get; set; }
 
     }

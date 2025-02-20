@@ -2,6 +2,7 @@
 using Ecommerce.Catalog.Dtos.CategoryDtos;
 using Ecommerce.Catalog.Dtos.FeatureDtos;
 using Ecommerce.Catalog.Dtos.FeatureSliderDtos;
+using Ecommerce.Catalog.Dtos.OfferDiscountDtos;
 using Ecommerce.Catalog.Dtos.ProductDetailDtos;
 
 using Ecommerce.Catalog.Dtos.ProductDto;
@@ -65,6 +66,10 @@ namespace Ecommerce.Catalog.Mapping
             CreateMap<Feature, UpdateFeatureDto>().ReverseMap();
             CreateMap<Feature, GetByIdFeatureDto>().ReverseMap();
 
+            CreateMap<OfferDiscount, ResultOfferDiscountDto>().ReverseMap();
+            CreateMap<OfferDiscount, CreateOfferDiscountDto>().ReverseMap();
+            CreateMap<OfferDiscount, UpdateOfferDiscountDto>().ReverseMap();
+            CreateMap<OfferDiscount, GetByIdOfferDiscountDto>().ReverseMap();
         }
     }
 }
