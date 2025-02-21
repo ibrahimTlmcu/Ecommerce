@@ -113,6 +113,13 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
                 return RedirectToAction("Index", "Brand", new { area = "Admin" });
 
             }
+            if (!responseMessage.IsSuccessStatusCode)
+            {
+                var errorMessage = await responseMessage.Content.ReadAsStringAsync();
+                // Hata mesajını loglayın veya kullanıcıya gösterin
+                ModelState.AddModelError(string.Empty, "Güncelleme işlemi sırasında bir hata oluştu: " + errorMessage);
+                return View(updateBrandDto);
+            }
             return View();
         }
     }

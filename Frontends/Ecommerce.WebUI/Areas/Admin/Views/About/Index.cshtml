@@ -1,9 +1,11 @@
-﻿@model List<ResultBrandDto>
+﻿@model List<Ecommerce.DtoLayer.CatalogDtos.AboutDtos.ResultAboutDto>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
-    int count = 0;
+    int count = 0; 
 }
+
+<h1>Index</h1>
 
 <section class="content container-fluid">
     <div class="row">
@@ -19,9 +21,9 @@
                         <thead>
 
                             <tr>
-                                <th>#</th>
-                                <th>Marka Adi</th>
-                                <th>Marka Gorsel</th>
+                                <th>Açıklama</th>
+                                <th>Adres</th>
+                                <th>Email</th>
                                 <th>Sil</th>
                                 <th>Guncelle</th>
                             </tr>
@@ -30,26 +32,46 @@
 
                             @foreach (var item in Model)
                             {
-                                count++;
+                               
                                 <tr>
-                                    <th scope="row">@count</th>
-                                    <td>@item.BrandName</td>
+                               
+                                    <td>@item.Description</td>
+                                    <td>@item.Address</td>
+                                    <td>@item.Email</td>
+                                    <td>@item.Phone</td>
 
                                     <td><a href="#" class="btn btn-warning">Kategoriye Ait Urunler</a></td>
-                                    <td><a href="/Admin/Brand/DeleteBrand/@item.BrandId" class="btn btn-danger">Sil</a></td>
-                                    <td><a href="/Admin/Brand/UpdateBrand/@item.BrandId" class="btn btn-danger">Guncelle</a></td>
-                                    
-
+                                    <td><button onclick="deleteAbout('@item.AboutId')" class="btn btn-danger">Sil</button></td>
+                                    <td><a href="/Admin/About/UpdateAbout/@item.AboutId" class="btn btn-success">Guncelle</a></td>
                                 </tr>
                             }
 
 
                         </tbody>
                     </table>
-                    <a href="/Admin/Brand/CreateBrand" class="btn btn-primary"> Yeni Kategori Girisi </a>
+                    <a href="/Admin/About/CreateAbout" class="btn btn-primary"> Yeni Hakkimizda Girisi </a>
                 </div>
             </div>
         </div>
 
     </div>
 </section>
+<script>
+    function deleteAbout(id) {
+        fetch(`/Admin/About/DeleteAbout/${id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = '/Admin/About/Index'; // Başarılıysa yönlendir
+                } else {
+                    alert('Silme işlemi başarısız!');
+                }
+            });
+
+    }
+</script>
+

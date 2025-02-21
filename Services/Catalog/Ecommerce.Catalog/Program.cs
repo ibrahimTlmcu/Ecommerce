@@ -2,6 +2,7 @@
 using Ecommerce.Catalog.Dtos.ProductDetailDtos;
 using Ecommerce.Catalog.Entities;
 using Ecommerce.Catalog.Mapping;
+using Ecommerce.Catalog.Services.AboutServices;
 using Ecommerce.Catalog.Services.BrandServices;
 using Ecommerce.Catalog.Services.CategoryServices;
 using Ecommerce.Catalog.Services.FeatureServices;
@@ -40,6 +41,8 @@ builder.Services.AddScoped<ISpecialOfferService, SpecialOfferService>();
 builder.Services.AddScoped<IFeatureService,FeatureService>();
 builder.Services.AddScoped<IOfferDiscountService, OfferDiscountService>();
 builder.Services.AddScoped<IBrandService, BrandService>();
+builder.Services.AddScoped<IAboutService, AboutService>();
+
 
 
 

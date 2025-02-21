@@ -1,11 +1,10 @@
-﻿@model CreateBrandDto
+﻿@model UpdateBrandDto
 @{
-    ViewData["Title"] = "CreateBrand";
+    ViewData["Title"] = "UpdateBrand";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
 }
 
-<h1>Marka Ekleme Alani</h1>
-
+<h1>UpdateBrand</h1>
 
 <section class="content container-fluid">
     <div class="row">
@@ -24,7 +23,7 @@
                         <input type="text" class="form-control" asp-for="ImageUrl" />
                         <br />
                         <br />
-                        <button class="btn btn-primary">Marka Ekle</button>
+                        <button class="btn btn-primary">Marka Guncelle</button>
                     </form>
                 </div>
             </div>
