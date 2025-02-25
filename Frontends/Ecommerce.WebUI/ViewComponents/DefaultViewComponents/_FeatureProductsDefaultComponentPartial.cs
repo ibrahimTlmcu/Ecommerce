@@ -21,7 +21,7 @@ namespace Ecommerce.WebUI.VıewComponents.DefaultViewComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7078/api/Categories");
+            var responseMessage = await client.GetAsync("https://localhost:7078/api/Product");
             Console.WriteLine("Metot çalıştı!");
             if (responseMessage.IsSuccessStatusCode)
             {

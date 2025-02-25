@@ -20,14 +20,14 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
         [Route("Index")]
         public async Task<IActionResult> Index()
         {
-     
+
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync("https://localhost:7078/api/Categories");
 
-            if(responseMessage.IsSuccessStatusCode)
+            if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData); 
+                var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
                 return View(values);
             }
             //Serialeze Metinde => Jsona donusum yapiyor Ekle Guncelle daha cok 
@@ -53,15 +53,15 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
         }
         [HttpPost]
         [Route("CreateCategory")]
-        public async Task <IActionResult>  CreateCategory(CreateCategoryDto createCategoryDto)
+        public async Task<IActionResult> CreateCategory(CreateCategoryDto createCategoryDto)
         {
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createCategoryDto);
             //json formatina donusturduk
-            StringContent stringContent = new StringContent(jsonData,Encoding.UTF8,"application/json");
+            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             //Bir contentc olarak atadim once turu sonra dili sonra mediator
             var responseMessage = await client.PostAsync("https://localhost:7078/api/Categories", stringContent);
-            if(responseMessage.IsSuccessStatusCode)
+            if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "Category", new { area = "Admin" });
             }
@@ -70,7 +70,7 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
 
 
         [Route("DeleteCategory/{id}")]
-        public async Task <IActionResult> DeleteCategory(string id)
+        public async Task<IActionResult> DeleteCategory(string id)
         {
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.DeleteAsync("https://localhost:7078/api/Categories?id=" + id);
@@ -106,7 +106,7 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateCategoryDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("https://localhost:7078/api/Categories/" , stringContent);
+            var responseMessage = await client.PutAsync("https://localhost:7078/api/Categories/", stringContent);
 
             if (responseMessage.IsSuccessStatusCode)
             {

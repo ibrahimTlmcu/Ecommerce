@@ -40,6 +40,13 @@ namespace Ecommerce.Catalog.Services.ProductImageServices
             return _mapper.Map<GetByIdProductImageDto>(values);
         }
 
+        public async Task<GetByIdProductImageDto>GetByProductIdProductImageAsync(string id)
+        {
+            var values = await _ProductImageCollection.Find(x => x.ProductId == id).FirstOrDefaultAsync();
+            return _mapper.Map<GetByIdProductImageDto>(values);
+        }
+
+
         public async Task<List<ResultProductImageDto>> GettAllProductImageAsync()
         {
             var values = await _ProductImageCollection.Find(x => true).ToListAsync();
@@ -48,9 +55,18 @@ namespace Ecommerce.Catalog.Services.ProductImageServices
 
         public async Task UpdateProductImageAsync(UpdateProductImageDto updateProductImageDto)
         {
-            var values = _mapper.Map<ProductImages>(UpdateProductImageAsync);
-            await _ProductImageCollection.FindOneAndReplaceAsync(x => x.ProductImagesId == updateProductImageDto.ProductImagesId, values);
+            var existingProductImage = await _ProductImageCollection.Find(x => x.ProductImagesId == updateProductImageDto.ProductImagesId).FirstOrDefaultAsync();
+
+            if (existingProductImage == null)
+            {
+                throw new Exception("Güncellenmek istenen ürün görseli bulunamadı!");
+            }
+
+            _mapper.Map(updateProductImageDto, existingProductImage); // Güncel bilgileri var olan nesneye uygula
+
+            await _ProductImageCollection.ReplaceOneAsync(x => x.ProductImagesId == updateProductImageDto.ProductImagesId, existingProductImage);
         }
+
 
     }
 }

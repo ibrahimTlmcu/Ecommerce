@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Ecommerce.Catalog.Dtos.CategoryDtos;
 using Ecommerce.Catalog.Dtos.ProductDto;
 using Ecommerce.Catalog.Entities;
 using Ecommerce.Catalog.Settings;
@@ -33,9 +34,11 @@ namespace Ecommerce.Catalog.Services.ProductServices
             await _productCollection.DeleteOneAsync(x => x.ProductId == id);
         }
 
+      
+
         public async Task<GetByIdProductDto> GetByIdProduct(string id)
         {
-            var values = await _productCollection.Find<Product>(x => x.ProductId == id).FirstOrDefaultAsync();
+            var values = await _productCollection.Find(x => x.ProductId == id).FirstOrDefaultAsync();
             return _mapper.Map<GetByIdProductDto>(values);  
 
         }
@@ -59,16 +62,25 @@ namespace Ecommerce.Catalog.Services.ProductServices
             var values = await _productCollection.Find(x => true).ToListAsync();
             foreach (var item in values)
             {
-                item.Category = await _categoryCollection.Find<Category>(x => x.CategoryId == item.CategoryId).FirstAsync();
+                item.Category = await _categoryCollection.Find(x => x.CategoryId == item.CategoryId).FirstAsync();
             };
 
             return _mapper.Map<List<ResultProductWithCategoryDto>>(values);
 
         }
 
-     
+        public async Task<List<ResultProductWithCategoryDto>> GetProductsWithCategoryByCategoryIdAsync(string CategoryId)
+        {
+            var values = await _productCollection.Find(x => x.CategoryId==CategoryId).ToListAsync();
+            foreach (var item in values)
+            {
+                item.Category = await _categoryCollection.Find(x => x.CategoryId == item.CategoryId).FirstAsync();
+            }
+            
 
-    
+            return _mapper.Map<List<ResultProductWithCategoryDto>>(values);
+
+        }
 
         public async Task<List<ResultProductDto>> GettAllProductAsync()
         {

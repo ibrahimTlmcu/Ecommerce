@@ -8,11 +8,11 @@ namespace Ecommerce.Catalog.Controllers
     [AllowAnonymous]
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class ProductsController : ControllerBase
     {
         private readonly IProductService _ProductService;
 
-        public ProductController(IProductService ProductService)
+        public ProductsController(IProductService ProductService)
         {
             _ProductService = ProductService;
         }
@@ -29,7 +29,7 @@ namespace Ecommerce.Catalog.Controllers
 
         public async Task<IActionResult> GetProductById(string id)
         {
-            var values = _ProductService.GetByIdProduct(id);
+            var values = await _ProductService.GetByIdProduct(id);
             return Ok(values);
         }
 

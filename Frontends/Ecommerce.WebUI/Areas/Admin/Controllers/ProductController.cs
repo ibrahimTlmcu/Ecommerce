@@ -102,13 +102,13 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
                                                    select new SelectListItem
                                                    {
                                                        Text = x.CategoryName,
-                                                       Value = x.CategoryId
+                                                       Value = x.CategoryId.ToString()
                                                    }).ToList();
             ViewBag.CategoryValues = categoryValues1;
 
             
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7078/api/Product/" + id);
+            var responseMessage = await client.GetAsync("https://localhost:7078/api/Products/" + id);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();

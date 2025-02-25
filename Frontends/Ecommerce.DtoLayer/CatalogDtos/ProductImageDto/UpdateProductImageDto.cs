@@ -1,6 +1,6 @@
-﻿namespace Ecommerce.Catalog.Dtos.ProductImageDto
+﻿namespace Ecommerce.DtoLayer.CatalogDtos.ProductImage
 {
-    public class GetByIdProductImageDto
+    public class UpdateProductImageDto
     {
         public string ProductImagesId { get; set; }
 

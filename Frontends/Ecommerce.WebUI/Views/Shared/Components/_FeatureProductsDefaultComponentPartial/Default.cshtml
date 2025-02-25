@@ -1,8 +1,5 @@
 ﻿@model List<ResultProductDto>
 
-
-
-
 <div class="container-fluid pt-5 pb-3">
     <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Featured Products</span></h2>
     <div class="row px-xl-5">
@@ -23,7 +20,7 @@
                         </div>
                     </div>
                     <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="">@item.ProductName</a>
+                        <a class="h6 text-decoration-none text-truncate" href="/ProductList/ProductDetail/@item.ProductId">@item.ProductName</a>
                         <div class="d-flex align-items-center justify-content-center mt-2">
                             <h5>@item.ProductPrice</h5><h6 class="text-muted ml-2">
                                 <del>
