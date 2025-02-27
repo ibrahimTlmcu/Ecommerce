@@ -40,6 +40,7 @@ namespace Ecommerce.Catalog.Services.CategoryServices
             return _mapper.Map<GetByIdCategoryDto>(values);
         }
 
+
         public async Task<List<ResultCategoryDto>> GettAllCategoryAsync()
         {
             var values = await _categoryCollection.Find(x => true).ToListAsync();

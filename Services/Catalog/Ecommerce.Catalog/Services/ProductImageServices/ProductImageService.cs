@@ -52,19 +52,10 @@ namespace Ecommerce.Catalog.Services.ProductImageServices
             var values = await _ProductImageCollection.Find(x => true).ToListAsync();
             return _mapper.Map<List<ResultProductImageDto>>(values);
         }
-
         public async Task UpdateProductImageAsync(UpdateProductImageDto updateProductImageDto)
         {
-            var existingProductImage = await _ProductImageCollection.Find(x => x.ProductImagesId == updateProductImageDto.ProductImagesId).FirstOrDefaultAsync();
-
-            if (existingProductImage == null)
-            {
-                throw new Exception("Güncellenmek istenen ürün görseli bulunamadı!");
-            }
-
-            _mapper.Map(updateProductImageDto, existingProductImage); // Güncel bilgileri var olan nesneye uygula
-
-            await _ProductImageCollection.ReplaceOneAsync(x => x.ProductImagesId == updateProductImageDto.ProductImagesId, existingProductImage);
+            var values = _mapper.Map<ProductImages>(updateProductImageDto);
+            await _ProductImageCollection.FindOneAndReplaceAsync(x => x.ProductImagesId == updateProductImageDto.ProductImagesId, values);
         }
 
 

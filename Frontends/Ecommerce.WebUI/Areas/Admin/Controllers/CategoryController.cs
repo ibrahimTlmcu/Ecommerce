@@ -33,11 +33,7 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
             //Serialeze Metinde => Jsona donusum yapiyor Ekle Guncelle daha cok 
             //Deserialeize Jsondan => Metine  Listele idye gore getir daha cok 
 
-
-
             return View();
-
-
         }
 
         [HttpGet]
@@ -51,6 +47,7 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
 
             return View();
         }
+
         [HttpPost]
         [Route("CreateCategory")]
         public async Task<IActionResult> CreateCategory(CreateCategoryDto createCategoryDto)
@@ -68,7 +65,6 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
             return View();
         }
 
-
         [Route("DeleteCategory/{id}")]
         public async Task<IActionResult> DeleteCategory(string id)
         {
@@ -81,8 +77,6 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
             }
             return View();
         }
-
-
 
         [Route("UpdateCategory/{id}")]
         [HttpGet]

@@ -31,8 +31,21 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 var values = JsonConvert.DeserializeObject<UpdateProductImageDto>(jsonData);
+                //UpdateProductImageDto abc = new UpdateProductImageDto();
+                //{
+                   
+                //    abc.Image1 = "a";
+                //    abc.Image2 = "a";
+                //    abc.Image3 = "a";
+                //    abc.Image4 = "a";
+                   
+                //}
+
                 return View(values);
+
             }
+
+
             return View();
         }
         [Route("ProductImageDetail/{id}")]

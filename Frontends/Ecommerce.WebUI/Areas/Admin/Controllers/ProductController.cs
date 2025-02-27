@@ -1,4 +1,4 @@
-﻿using Ecommerce.DtoLayer.CatalogDtos.CategoryDtos;
+﻿    using Ecommerce.DtoLayer.CatalogDtos.CategoryDtos;
 using Ecommerce.DtoLayer.CatalogDtos.ProductDtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -69,6 +69,7 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("ProductListWithCategory", "Product", new { area = "Admin" });
+                
             }
             return View();
         }

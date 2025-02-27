@@ -11,7 +11,6 @@ namespace Ecommerce.Catalog.Services.ProductDetailServices
 
         private readonly IMapper _mapper;
         private readonly IMongoCollection<ProductDetail> _ProductDetailCollection;
-
         public ProductDetailService(IMapper mapper, IDatabaseSettings _databaseSettings)
         {
             var client = new MongoClient(_databaseSettings.ConnectionString);
@@ -33,9 +32,15 @@ namespace Ecommerce.Catalog.Services.ProductDetailServices
 
         public async Task<GetByIdProductDetailDto> GetByIdProductDetail(string id)
         {
-            var values = await _ProductDetailCollection.Find<ProductDetail>(x => x.ProductDetailId == id).FirstOrDefaultAsync();
+            var values = await _ProductDetailCollection.Find(x => x.ProductDetailId == id).FirstOrDefaultAsync();
             return _mapper.Map<GetByIdProductDetailDto>(values);
 
+        }
+
+        public async  Task<GetByIdProductDetailDto> GetByProductIdProductDetailAsync(string id)
+        {
+            var values = await _ProductDetailCollection.Find(x => x.ProductId == id).FirstOrDefaultAsync();
+            return _mapper.Map<GetByIdProductDetailDto>(values);
         }
 
         public async Task<List<ResultProductDetailDto>> GettAllProductDetailAsync()
@@ -43,12 +48,12 @@ namespace Ecommerce.Catalog.Services.ProductDetailServices
             var values = await _ProductDetailCollection.Find(x => true).ToListAsync();
             return _mapper.Map<List<ResultProductDetailDto>>(values);
         }
-
         public async Task UpdateProductDetailAsync(UpdateProductDetailDto updateProductDetailDto)
         {
             var values = _mapper.Map<ProductDetail>(updateProductDetailDto);
             await _ProductDetailCollection.FindOneAndReplaceAsync(x => x.ProductDetailId == updateProductDetailDto.ProductDetailId, values);
 
         }
+
     }
 }
