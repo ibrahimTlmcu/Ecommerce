@@ -1,6 +1,36 @@
+using Ecommerce.WebUI.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddCookie(JwtBearerDefaults.AuthenticationScheme,
+    opt =>
+    {
+        opt.LoginPath = "/Login/Index";//Giris yapmayan kullanici gidecegi sayfa
+        opt.LogoutPath = "/Login/Index";//Cikis yapilan sayfa
+        opt.AccessDeniedPath = "/Login/Index";//Yetkisi olmayan kullanici gidecegi sayfa
+        opt.ExpireTimeSpan = TimeSpan.FromMinutes(10);//Oturum suresi
+        opt.Cookie.HttpOnly = true;//•	Bu ayar, çerezin sadece HTTP istekleriyle eriþilebilir olmasýný saðlar.
+                                   //JavaScript gibi istemci tarafý betikleri bu çereze eriþemez
+        opt.Cookie.SameSite = SameSiteMode.Strict;//•	Bu ayar, çerezin sadece ayný site içerisindeki isteklerle gönderilmesini saðlar.
+                                                  //Bu, CSRF (Cross-Site Request Forgery) saldýrýlarýna karþý koruma saðlar. SameSiteMode.Strict deðeri,
+                                                  //çerezin üçüncü taraf sitelerden gelen isteklerle gönderilmesini tamamen engeller.
+        opt.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;// SameAsRequest deðeri, çerezin sadece isteðin güvenli olup olmamasýna
+                                                                   // baðlý olarak gönderilmesini saðlar. Yani, HTTPS isteklerinde çerez güvenli olarak
+                                                                   // iþaretlenir, HTTP isteklerinde ise güvenli olarak iþaretlenmez
+        opt.Cookie.Name = "EcommerceJwt";
+    });
+
+
+
+builder.Services.AddHttpContextAccessor();
+// Bu, özellikle baðýmlýlýk enjeksiyonu kullanarak  
+// HttpContext'e eriþmek istediðinizde faydalýdýr.
+
+builder.Services.AddScoped<ILoginService, LoginService>();
+
+// Add services to the container
 builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
 
@@ -18,7 +48,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

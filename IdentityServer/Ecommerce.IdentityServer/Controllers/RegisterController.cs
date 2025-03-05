@@ -5,13 +5,18 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using static IdentityServer4.IdentityServerConstants;
 
 namespace Ecommerce.IdentityServer.Controllers
 {
-    [Authorize(LocalApi.PolicyName)]//IdentityServiceToken ile dogrulama sagliyoruz 
+    [AllowAnonymous]
+
+    //{
+    //    [Authorize(LocalApi.PolicyName)]//IdentityServiceToken ile dogrulama sagliyoruz 
     [Route("api/[controller]")]
+   
     [ApiController]
     public class RegisterController : ControllerBase
     {
@@ -32,7 +37,8 @@ namespace Ecommerce.IdentityServer.Controllers
                 Name = userRegisterDto.Name,
                 Surname = userRegisterDto.Surname,
             };
-            var result = await _userManager.CreateAsync(values,userRegisterDto.Password);
+            var result = await _userManager.CreateAsync(values, userRegisterDto.Password);
+            
             if (result.Succeeded)
             {
                 return Ok("Ekleme islemi basarili");

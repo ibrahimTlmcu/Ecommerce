@@ -35,16 +35,18 @@ namespace Ecommerce.WebUI.Controllers
 
         public async Task<IActionResult> AddComment(CreateCommentDto createCommentDto)
         {
+            //Bu kisimlar kullanici bos gecerse default olarak ekleme yapacak
             createCommentDto.ImageUrl = "test";
             createCommentDto.Rating = 1;
             createCommentDto.CreateDate =DateTime.Parse( DateTime.Now.ToShortDateString());
             createCommentDto.Status = false;
+            createCommentDto.ProductId = "67ba16d51f75eba0d6e429a6";
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createCommentDto);
             //json formatina donusturduk
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             //Bir contentc olarak atadim once turu sonra dili sonra mediator
-            var responseMessage = await client.PostAsync("https://localhost:7130/api/Comments?id=", stringContent);
+            var responseMessage = await client.PostAsync("https://localhost:7130/api/Comments", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "Default", new { area = "Admin" });
@@ -53,6 +55,175 @@ namespace Ecommerce.WebUI.Controllers
         }
 
 
-
+        
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    

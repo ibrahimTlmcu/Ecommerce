@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Ecommerce.IdentityServer.Migrations
 {
-    public partial class mg1 : Migration
+    public partial class mg3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

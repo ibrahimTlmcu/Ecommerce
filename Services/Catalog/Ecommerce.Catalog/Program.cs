@@ -5,6 +5,7 @@ using Ecommerce.Catalog.Mapping;
 using Ecommerce.Catalog.Services.AboutServices;
 using Ecommerce.Catalog.Services.BrandServices;
 using Ecommerce.Catalog.Services.CategoryServices;
+using Ecommerce.Catalog.Services.ContactServices;
 using Ecommerce.Catalog.Services.FeatureServices;
 using Ecommerce.Catalog.Services.FeatureSliderServices;
 using Ecommerce.Catalog.Services.OfferDiscountService;
@@ -42,6 +43,7 @@ builder.Services.AddScoped<IFeatureService,FeatureService>();
 builder.Services.AddScoped<IOfferDiscountService, OfferDiscountService>();
 builder.Services.AddScoped<IBrandService, BrandService>();
 builder.Services.AddScoped<IAboutService, AboutService>();
+builder.Services.AddScoped<IContactServices, ContactServices>();        
 
 
 
