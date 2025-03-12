@@ -1,0 +1,130 @@
+    { //Discount servisine erisim
+      "DownstreamPathTemplate": "api/{everything}/", //everything tum metotlarý kapsar
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 444
+        }
+      ],
+      "UpstreamPathTemplate": "/services/discount/{everything}",
+      //istegin yapilacagi yer
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "UpstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "OcelotAuthenticationScheme",
+        "AllowedScopes": [ "DiscountFullPermission" ]
+        //Identity congfig.cs gibi erisim belirledik
+      }
+    },
+    { //Order servisine erisim
+      "DownstreamPathTemplate": "api/{everything}/", //everything tum metotlarý kapsar
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 445
+        }
+      ],
+      "UpstreamPathTemplate": "/services/order/{everything}",
+      //istegin yapilacagi yer
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "UpstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "OcelotAuthenticationScheme",
+        "AllowedScopes": [ "OrderFullPermission" ]
+        //Identity congfig.cs gibi erisim belirledik
+      }
+    },
+    { //Cargo servisine erisim
+      "DownstreamPathTemplate": "api/{everything}/", //everything tum metotlarý kapsar
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 446
+        }
+      ],
+      "UpstreamPathTemplate": "/services/cargo/{everything}",
+      //istegin yapilacagi yer
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "UpstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "OcelotAuthenticationScheme",
+        "AllowedScopes": [ "CargoFullPermission" ]
+        //Identity congfig.cs gibi erisim belirledik
+      }
+    },
+    { //Basket servisine erisim
+      "DownstreamPathTemplate": "api/{everything}/", //everything tum metotlarý kapsar
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/services/basket/{everything}",
+      //istegin yapilacagi yer
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "UpstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "OcelotAuthenticationScheme",
+        "AllowedScopes": [ "BasketFullPermission" ]
+        //Identity congfig.cs gibi erisim belirledik
+      }
+    },
+    { //Comment servisine erisim
+      "DownstreamPathTemplate": "api/{everything}/", //everything tum metotlarý kapsar
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/services/comment/{everything}",
+      //istegin yapilacagi yer
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "UpstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "OcelotAuthenticationScheme",
+        "AllowedScopes": [ "CommentFullPermission" ]
+        //Identity congfig.cs gibi erisim belirledik
+      },
+      { //Payment servisine erisim
+        "DownstreamPathTemplate": "api/{everything}/", //everything tum metotlarý kapsar
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": 443
+          }
+        ],
+        "UpstreamPathTemplate": "/services/payment/{everything}",
+        //istegin yapilacagi yer
+        "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+        "UpstreamScheme": "http",
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "OcelotAuthenticationScheme",
+          "AllowedScopes": [ "PaymentFullPermission" ]
+          //Identity congfig.cs gibi erisim belirledik
+        },
+        { //Images servisine erisim
+          "DownstreamPathTemplate": "api/{everything}/", //everything tum metotlarý kapsar
+          "DownstreamScheme": "http",
+          "DownstreamHostAndPorts": [
+            {
+              "Host": "localhost",
+              "Port": 443
+            }
+          ],
+          "UpstreamPathTemplate": "/services/images/{everything}",
+          //istegin yapilacagi yer
+          "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+          "UpstreamScheme": "http",
+          "AuthenticationOptions": {
+            "AuthenticationProviderKey": "OcelotAuthenticationScheme",
+            "AllowedScopes": [ "ImagesFullPermission" ]
+            //Identity congfig.cs gibi erisim belirledik
+          },

@@ -1,10 +1,12 @@
 ﻿using Ecommerce.Catalog.Dtos.ContactDtos;
 using Ecommerce.Catalog.Services.ContactServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce.Catalog.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ContactsController : ControllerBase

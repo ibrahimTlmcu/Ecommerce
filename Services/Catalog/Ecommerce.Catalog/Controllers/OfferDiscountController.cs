@@ -7,8 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce.Catalog.Controllers
 {
-
-    [AllowAnonymous]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class OfferDiscountController : ControllerBase

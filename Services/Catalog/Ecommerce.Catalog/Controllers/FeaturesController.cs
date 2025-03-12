@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce.Catalog.Controllers
 {
-   
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class FeaturesController : ControllerBase

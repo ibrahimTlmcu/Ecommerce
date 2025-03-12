@@ -1,0 +1,32 @@
+﻿@model List<ResultCategoryDto>
+@{
+    Layout = null;
+}
+<a href="c:\users\ibrah\source\repos\ecommerce\frontends\ecommerce.webui\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map">c:\users\ibrah\source\repos\ecommerce\frontends\ecommerce.webui\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map</a>
+<a href="c:\users\ibrah\source\repos\ecommerce\frontends\ecommerce.webui\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map">c:\users\ibrah\source\repos\ecommerce\frontends\ecommerce.webui\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map</a>
+<a href="c:\users\ibrah\source\repos\ecommerce\frontends\ecommerce.webui\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map">c:\users\ibrah\source\repos\ecommerce\frontends\ecommerce.webui\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map</a>
+<a href="c:\users\ibrah\source\repos\ecommerce\frontends\ecommerce.webui\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map">c:\users\ibrah\source\repos\ecommerce\frontends\ecommerce.webui\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map</a>
+<link href="c:\users\ibrah\source\repos\ecommerce\frontends\ecommerce.webui\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css" rel="stylesheet" />
+<link href="c:\users\ibrah\source\repos\ecommerce\frontends\ecommerce.webui\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css" rel="stylesheet" />
+<link href="c:\users\ibrah\source\repos\ecommerce\frontends\ecommerce.webui\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css" rel="stylesheet" />
+<link href="c:\users\ibrah\source\repos\ecommerce\frontends\ecommerce.webui\wwwroot\lib\bootstrap\dist\css\bootstrap.css" rel="stylesheet" />
+<!DOCTYPE html>
+
+<div class="container">
+    <br /> <br />
+    <table class="table table-bordered">
+        <tr>
+            <th>#</th>
+            <th>Kategory</th>
+
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CategoryId</td>
+                <td>@item.CategoryName</td>
+
+            </tr>
+        }
+    </table>
+</div>

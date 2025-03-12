@@ -1,4 +1,8 @@
 using Ecommerce.WebUI.Services;
+using Ecommerce.WebUI.Services.Concrate;
+using Ecommerce.WebUI.Services.Interfaces;
+using Ecommerce.WebUI.Settings;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,18 +26,29 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         opt.Cookie.Name = "EcommerceJwt";
     });
 
-
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
+    AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, opt =>
+    {
+        opt.LoginPath = "/Login/Index/";
+        opt.ExpireTimeSpan = TimeSpan.FromDays(5);
+        opt.Cookie.Name = "EcommerceCookie";
+        opt.SlidingExpiration = true;
+    });
 
 builder.Services.AddHttpContextAccessor();
 // Bu, özellikle baðýmlýlýk enjeksiyonu kullanarak  
 // HttpContext'e eriþmek istediðinizde faydalýdýr.
 
 builder.Services.AddScoped<ILoginService, LoginService>();
+builder.Services.AddScoped<IIdentityService, IDentityService>();
 
 // Add services to the container
 builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
 
+
+
+builder.Services.Configure<ClientSettings>(builder.Configuration.GetSection("ClientSettings"));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
