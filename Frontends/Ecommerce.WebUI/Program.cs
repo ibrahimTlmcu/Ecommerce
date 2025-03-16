@@ -1,9 +1,15 @@
+
+using Ecommerce.WebUI.Handlers;
 using Ecommerce.WebUI.Services;
+using Ecommerce.WebUI.Services.CatalogServices.CategoryServices;
+
+
 using Ecommerce.WebUI.Services.Concrate;
 using Ecommerce.WebUI.Services.Interfaces;
 using Ecommerce.WebUI.Settings;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,9 +41,12 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         opt.SlidingExpiration = true;
     });
 
+builder.Services.AddAccessTokenManagement();
 builder.Services.AddHttpContextAccessor();
 // Bu, özellikle baðýmlýlýk enjeksiyonu kullanarak  
 // HttpContext'e eriþmek istediðinizde faydalýdýr.
+
+
 
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IIdentityService, IDentityService>();
@@ -47,8 +56,30 @@ builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
 
 
-
 builder.Services.Configure<ClientSettings>(builder.Configuration.GetSection("ClientSettings"));
+builder.Services.Configure<ServiceApiSettings>(builder.Configuration.GetSection("ServiceApiSettings"));
+
+builder.Services.AddScoped<ResourceOwnerPasswordTokenHandler>();
+builder.Services.AddScoped<ClientCredentialTokenHandler>();
+builder.Services.AddScoped<IClientCredentialTokenService, ClientCredentialTokenService>();
+
+var values = builder.Configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
+builder.Services.AddHttpClient<IUserService, UserService>(opt =>
+{
+    opt.BaseAddress = new Uri("http://localhost:5001");
+}).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+
+builder.Services.AddHttpClient<ICategoryService, CategoryService>(client =>
+{
+    client.BaseAddress = new Uri("http://localhost:5085/services/catalog/");
+})
+.AddHttpMessageHandler<ClientCredentialTokenHandler>();
+
+builder.Services.AddHttpClient<ClientCredentialTokenService>();
+
+
+builder.Services.AddTransient<ClientCredentialTokenHandler>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -1,4 +1,8 @@
-﻿using Ecommerce.DtoLayer.CatalogDtos.CategoryDtos;
+﻿
+using Ecommerce.WebUI.Services.CatalogServices.CategoryServices;
+// veya
+
+using Ecommerce.DtoLayer.CatalogDtos.CategoryDtos;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -6,14 +10,20 @@ using System.Net.Http.Headers;
 
 namespace Ecommerce.WebUI.Areas.Admin.Controllers
 {
+
     [Area("Admin")]
     public class TestController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        public TestController(IHttpClientFactory httpClientFactory)
+        private readonly ICategoryService _categoryService;
+
+
+        public TestController(IHttpClientFactory httpClientFactory, ICategoryService categoryService)
         {
             _httpClientFactory = httpClientFactory;
+            _categoryService = categoryService;
         }
+
         public async Task<IActionResult> Index()
         {
 
@@ -54,6 +64,13 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
             //Serialeze Metinde => Jsona donusum yapiyor Ekle Guncelle daha cok 
             //Deserialeize Jsondan => Metine  Listele idye gore getir daha cok 
             return View();
+        }
+
+        public async Task<IActionResult> Deneme2()
+        {
+            var values = await _categoryService.GettAllCategoryAsync(); 
+
+            return View(values);
         }
     }
 
