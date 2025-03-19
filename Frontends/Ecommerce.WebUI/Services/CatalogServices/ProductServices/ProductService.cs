@@ -30,9 +30,9 @@ namespace Ecommerce.WebUI.Services.CatalogServices.ProductServices
 
         public async Task<List<ResultProductWithCategoryDto>> GetProductsWithCategoryAsync()
         {
-            //var responseMessage = await _httpClient.GetAsync("product/");
-            //var jsonData = await responseMessage.Content.ReadAsStringAsync();
-            //var values = JsonConvert.DeserializeObject<List<ResultProductDto>>(jsonData);
+            var responseMessage = await _httpClient.GetAsync("product/");
+            var jsonData = await responseMessage.Content.ReadAsStringAsync();
+            var values = JsonConvert.DeserializeObject<List<ResultProductDto>>(jsonData);
             return values;
         }
 
