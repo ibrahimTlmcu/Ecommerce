@@ -22,11 +22,11 @@ namespace Ecommerce.WebUI.Services.CatalogServices.CategoryServices
             await _httpClient.DeleteAsync($"categories?id={id}");
         }
 
-        public async Task<GetByIdCategoryDto> GetByIdCategoryAsync(string id)
+        public async Task<UpdateCategoryDto> GetByIdCategoryAsync(string id)
         {
             var response = await _httpClient.GetAsync($"categories/{id}");
             response.EnsureSuccessStatusCode();
-            var result = await response.Content.ReadFromJsonAsync<GetByIdCategoryDto>();
+            var result = await response.Content.ReadFromJsonAsync<UpdateCategoryDto>();
             return result;
         }
 
@@ -44,9 +44,6 @@ namespace Ecommerce.WebUI.Services.CatalogServices.CategoryServices
             await _httpClient.PutAsJsonAsync("categories", updateCategoryDto);
         }
 
-        Task<UpdateCategoryDto> ICategoryService.GetByIdCategoryAsync(string id)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

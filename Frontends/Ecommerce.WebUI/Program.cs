@@ -2,8 +2,7 @@
 using Ecommerce.WebUI.Handlers;
 using Ecommerce.WebUI.Services;
 using Ecommerce.WebUI.Services.CatalogServices.CategoryServices;
-
-
+using Ecommerce.WebUI.Services.CatalogServices.ProductServices;
 using Ecommerce.WebUI.Services.Concrate;
 using Ecommerce.WebUI.Services.Interfaces;
 using Ecommerce.WebUI.Settings;
@@ -45,6 +44,7 @@ builder.Services.AddAccessTokenManagement();
 builder.Services.AddHttpContextAccessor();
 // Bu, özellikle baðýmlýlýk enjeksiyonu kullanarak  
 // HttpContext'e eriþmek istediðinizde faydalýdýr.
+builder.Services.AddScoped<Ecommerce.WebUI.Services.CatalogServices.ProductServices.IProductService, Ecommerce.WebUI.Services.CatalogServices.ProductServices.ProductService>();
 
 
 
@@ -74,6 +74,16 @@ builder.Services.AddHttpClient<ICategoryService, CategoryService>(client =>
     client.BaseAddress = new Uri("http://localhost:5085/services/catalog/");
 })
 .AddHttpMessageHandler<ClientCredentialTokenHandler>();
+
+builder.Services.AddHttpClient<IProductService, ProductService>(client =>
+{
+    client.BaseAddress = new Uri("http://localhost:5085/services/products/"); // <-- API adresini buraya yaz!
+});
+builder.Services.AddHttpClient<IProductService, ProductService>(opt =>
+{
+    opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}");
+}).AddHttpMessageHandler<ClientCredentialTokenHandler>();
+
 
 builder.Services.AddHttpClient<ClientCredentialTokenService>();
 

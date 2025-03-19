@@ -1,5 +1,7 @@
-﻿using Ecommerce.Catalog.Dtos.ProductDetailDtos;
+﻿
 
+
+using Ecommerce.Catalog.Dtos.ProductDetailDtos;
 
 namespace Ecommerce.Catalog.Services.ProductDetailServices
 {
