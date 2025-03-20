@@ -50,21 +50,18 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> CreateProduct()
         {
 
-            //var client = _httpClientFactory.CreateClient();
-            //var responseMessage = await client.GetAsync("https://localhost:7078/api/Categories");
-            //var jsonData = await responseMessage.Content.ReadAsStringAsync();
-            //var categoryValues =  await _productService.GettAllProductAsync();
-            //var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(categoryValues);
-
-            //List<SelectListItem> categoryValues = (from x in values
-            //                                       select new SelectListItem
-            //                                       {
-            //                                           Text = x.CategoryName,
-            //                                           Value = x.CategoryId
-            //                                       }).ToList();
-            //ViewBag.CategoryValues = categoryValues;
-
+            ProductViewBagList();
+            var values = await _categoryService.GettAllCategoryAsync();
+            List<SelectListItem> categoryValues = (from x in values
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.CategoryName,
+                                                       Value = x.CategoryId
+                                                   }).ToList();
+            ViewBag.CategoryValues = categoryValues;
             return View();
+
+            
         }
         [HttpPost]
         [Route("CreateProduct")]
@@ -77,7 +74,7 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
         [Route("DeleteProduct/{id}")]
         public async Task<IActionResult> DeleteProduct(string id)
         {
-            await _categoryService.DeleteCategoryAsync(id);
+            await _productService.DeleteProductAsync(id);
             return RedirectToAction("Index", "Product", new { area = "Admin" });
         }
 
@@ -89,30 +86,21 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> UpdateProduct(string id)
         {
 
-            //var client1 = _httpClientFactory.CreateClient();
-            //var responseMessage1 = await client1.GetAsync("https://localhost:7078/api/Categories");
-            //var jsonData1 = await responseMessage1.Content.ReadAsStringAsync();
-            //var values1 = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData1);
+            ProductViewBagList();
 
-            //List<SelectListItem> categoryValues1 = (from x in values1
-            //                                       select new SelectListItem
-            //                                       {
-            //                                           Text = x.CategoryName,
-            //                                           Value = x.CategoryId.ToString()
-            //                                       }).ToList();
-            //ViewBag.CategoryValues = categoryValues1;
+            var values = await _categoryService.GettAllCategoryAsync();
+            List<SelectListItem> categoryValues = (from x in values
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.CategoryName,
+                                                       Value = x.CategoryId
+                                                   }).ToList();
+            ViewBag.CategoryValues = categoryValues;
 
-            
-            //var client = _httpClientFactory.CreateClient();
-            //var responseMessage = await client.GetAsync("https://localhost:7078/api/Products/" + id);
-            //if (responseMessage.IsSuccessStatusCode)
-            //{
-            //    var jsonData = await responseMessage.Content.ReadAsStringAsync();
-            //    var values = JsonConvert.DeserializeObject<UpdateProductDto>(jsonData);
-            //    return View(values);
-            //}
-            
-            return View();
+            var productValues = await _productService.GetByIdProduct(id);
+            return View(productValues);
+
+           
         }
         [Route("UpdateProduct/{id}")]
         [HttpPost]

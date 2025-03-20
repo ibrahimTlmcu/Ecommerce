@@ -16,10 +16,6 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
         private readonly IHttpClientFactory _httpClientFactory;
 
         private readonly ICategoryService _categoryService;
-
-
-     
-
         public CategoryController(IHttpClientFactory httpClientFactory, ICategoryService categoryService)
         {
             _httpClientFactory = httpClientFactory;

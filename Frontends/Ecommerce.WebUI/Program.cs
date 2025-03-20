@@ -77,7 +77,7 @@ builder.Services.AddHttpClient<ICategoryService, CategoryService>(client =>
 
 builder.Services.AddHttpClient<IProductService, ProductService>(client =>
 {
-    client.BaseAddress = new Uri("http://localhost:5085/services/products/"); // <-- API adresini buraya yaz!
+    client.BaseAddress = new Uri("http://localhost:5085/services/product/"); // <-- API adresini buraya yaz!
 });
 builder.Services.AddHttpClient<IProductService, ProductService>(opt =>
 {
