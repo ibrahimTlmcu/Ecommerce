@@ -6,6 +6,8 @@ namespace Ecommerce.WebUI.Controllers
     {
         public IActionResult Index()
         {
+            var user = User.Claims; // Bilgi gormek icin
+            int x;
             return View();
         }
     }

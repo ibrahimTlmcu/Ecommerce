@@ -1,0 +1,23 @@
+﻿@model List<ResultCategoryDto>
+
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Deneme2</title>
+
+    @foreach(var item in Model)
+    {
+        @item.CategoryName
+    }
+
+</head>
+<body>
+</body>
+</html>

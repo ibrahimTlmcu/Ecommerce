@@ -1,9 +1,11 @@
 ﻿using Ecommerce.Catalog.Dtos.ProductImageDto;
 using Ecommerce.Catalog.Services.ProductImageServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce.Catalog.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductImagesController : ControllerBase
@@ -22,6 +24,17 @@ namespace Ecommerce.Catalog.Controllers
             var values = await _ProductImageService.GettAllProductImageAsync();
             return Ok(values);
         }
+
+
+        [HttpGet("ProductImagesByProductId")]
+
+        public async Task<IActionResult> ProductImagesByProductId(string id)
+        {
+            var values = await _ProductImageService.GetByProductIdProductImageAsync(id);
+            return Ok(values);
+        }
+
+
 
         [HttpGet("{id}")]
 

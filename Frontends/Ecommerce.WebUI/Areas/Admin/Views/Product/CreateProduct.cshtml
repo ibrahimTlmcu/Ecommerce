@@ -1,13 +1,13 @@
-﻿@model CreateProductDto
+﻿@* @model CreateProductDto
 @{
     ViewData["Title"] = "CreateProduct";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
 }
 
-<h1>CreateProduct</h1>
+<h1>Ü Ekleme</h1>
+ *@
 
-
-<section class="content container-fluid">
+@* <section class="content container-fluid">
     <div class="row">
 
         <div class="col-md-12">
@@ -41,4 +41,85 @@
             </div>
         </div>
     </div>
+</section> *@
+@model CreateProductDto
+@{
+    ViewData["Title"] = "CreateProduct";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="chart-box">
+                <h4>Ürün Ekleme Sayfası</h4>
+                <br />
+                <div class="bs-example" data-example-id="bordered-table">
+                    <form method="post" class="needs-validation" novalidate>
+                        <div class="form-group">
+                            <label for="ProductName">Ürün Adı</label>
+                            <input type="text" class="form-control" id="ProductName" asp-for="ProductName" required />
+                            <div class="invalid-feedback">
+                                Lütfen ürün adını giriniz.
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label for="ProductPrice">Ürün Fiyatı</label>
+                            <input type="text" class="form-control" id="ProductPrice" asp-for="ProductPrice" required />
+                            <div class="invalid-feedback">
+                                Lütfen ürün fiyatını giriniz.
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label for="ProductImageUrl">Ürün Görsel URL</label>
+                            <input type="text" class="form-control" id="ProductImageUrl" asp-for="ProductImageUrl" required />
+                            <div class="invalid-feedback">
+                                Lütfen ürün görsel URL'sini giriniz.
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label for="CategoryId">Ürün Kategorisi</label>
+                            @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.CategoryValues, new { @class = "form-control", id = "CategoryId", required = "required" })
+                            <div class="invalid-feedback">
+                                Lütfen bir kategori seçiniz.
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label for="ProductDescription">Ürün Açıklaması</label>
+                            <textarea class="form-control" id="ProductDescription" asp-for="ProductDescription" rows="5" required></textarea>
+                            <div class="invalid-feedback">
+                                Lütfen ürün açıklamasını giriniz.
+                            </div>
+                        </div>
+                        <br />
+                        <button type="submit" class="btn btn-primary">Ürünü Ekle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
+
+@section Scripts {
+    <script>
+        // Form validation
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                var forms = document.getElementsByClassName('needs-validation');
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+}

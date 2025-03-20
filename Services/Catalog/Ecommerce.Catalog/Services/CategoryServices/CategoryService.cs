@@ -34,11 +34,12 @@ namespace Ecommerce.Catalog.Services.CategoryServices
 
         }
 
-        public async Task<GetByIdCategoryDto> GetByIdCategory(string id)
+        public async Task<UpdateCategoryDto> GetByIdCategory(string id)
         {
             var values = await _categoryCollection.Find(x => x.CategoryId == id).FirstOrDefaultAsync();
-            return _mapper.Map<GetByIdCategoryDto>(values);
+            return _mapper.Map<UpdateCategoryDto>(values);
         }
+
 
         public async Task<List<ResultCategoryDto>> GettAllCategoryAsync()
         {

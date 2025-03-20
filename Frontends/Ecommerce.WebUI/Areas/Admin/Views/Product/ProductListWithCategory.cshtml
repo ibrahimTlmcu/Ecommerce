@@ -5,7 +5,7 @@
     int count = 0;
 }
 
-<h1>ProductListWithCategory</h1>
+<h1>Ürün EKleme</h1>
 
 <section class="content container-fluid">
     <div class="row">
@@ -23,9 +23,11 @@
                                 <th>#</th>
                                 <th>Urun Adi</th>
                                 <th>Urun Fiyati</th>
-                                <th>Urun Kategory</th>
+                                <th>Urun Kategori</th>
                                 <th>Sil</th>
                                 <th>Guncelle</th>
+                                <th>Ürün Görselleri</th>
+                                <th>Açıklama ve Bilgi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -39,14 +41,13 @@
                                     <td>@item.ProductPrice</td>
                                     <td>@item.Category.CategoryName</td>
 
-                                    <th scope="row">@count</th>
-                                    <td>@item.ProductName</td>
-                                    <td>@item.ProductPrice</td>
-                                    <td>@item.Category.CategoryName</td>
+                                 
+
+                                 
                                     <td><a href="/Admin/Product/DeleteProduct/@item.ProductId" class="btn btn-danger">Sil</a></td>
                                     <td><a href="/Admin/Product/UpdateProduct/@item.ProductId" class="btn btn-success">Güncelle</a></td>
                                     <td><a href="/Admin/ProductImage/ProductImageDetail/@item.ProductId" class="btn btn-warning">Ürün Görselleri</a></td>
-                                    <td><a href="/Admin/ProductDetail/UpdateProductDetail/@item.ProductId" class="btn btn-info">Açıklama ve Bilgi</a></td>
+                                    <td><a href="/Admin/ProductDetail/ProductDetail/@item.ProductId" class="btn btn-info">Açıklama ve Bilgi</a></td>
                                 </tr>
                             }
 

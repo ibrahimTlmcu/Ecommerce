@@ -1,0 +1,77 @@
+﻿@model List<ResultCommentDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+
+    int count = 0;
+}
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="chart-box">
+                <h4>Basic Tables</h4>
+                <p>For basic styling&mdash;light padding and only horizontal dividers&mdash;add the base class <code>.table</code> to any <code>&lt;table&gt;</code>. It may seem super redundant, but given the widespread use of tables for other plugins like calendars and date pickers, we've opted to isolate our custom table styles.</p>
+                <div class="bs-example" data-example-id="simple-table">
+                    <table class="table">
+                        <caption>
+                            Optional table caption.
+                        </caption>
+                        <thead>
+
+                            <tr>
+                                <th>#</th>
+                                <th>Kullanici</th>
+                                <th>Yorum</th>
+                                <th>Tarih</th>
+                                <th>Durum</th>
+                                <th>Sil</th>
+                                <th>Guncelle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                count++;
+                                <tr>
+                                    <th scope="row">@count</th>
+                                    <td>@item.NameSurname</td>
+                                    <td>@item.CommentDetail</td>
+                                    <td>@item.CreateDate.ToShortDateString()</td>
+                                    @* <td>@item.Status()</td> *@
+
+                                    <td><a href="#" class="btn btn-warning">Kategoriye Ait Urunler</a></td>
+                                    <td><button onclick="deleteComment('@item.UserCommentId')" class="btn btn-danger">Sil</button></td>
+                                  
+                                    <td><a href="/Admin/Comment/UpdateComment/@item.UserCommentId" class="btn btn-success">Guncelle</a></td>
+                                </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                    <a href="/Admin/Comment/CreateComment" class="btn btn-primary"> Yeni  Girisi </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        function deleteComment(id) {
+            fetch(`/Admin/Comment/DeleteComment/${id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = '/Admin/Comment/Index'; // Başarılıysa yönlendir
+                    } else {
+                        alert('Silme işlemi başarısız!');
+                    }
+                });
+
+        }
+    </script>
+
