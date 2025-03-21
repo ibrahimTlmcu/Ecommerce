@@ -32,7 +32,7 @@
                                 <tr>
                                     <th scope="row">@count</th>
                                     <td>@item.Title</td>
-                                    <td><a href="/Admin/FSlider/@item.FeatureSliderId" class="btn btn-danger">Sil</a></td>
+                                    <td><button onclick="deleteFSlider('@item.FeatureSliderId')" class="btn btn-danger">Sil</button></td>
                                     <td><a href="/Admin/FSlider/UpdateFSlider/@item.FeatureSliderId" class="btn btn-success">Güncelle</a></td>
                                 </tr>
                             }
@@ -44,4 +44,23 @@
         </div>
     </div>
 </section>
+
+<script>
+    function deleteFSlider(id) {
+        fetch(`/Admin/FSlider/DeleteFSlider/${id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = '/Admin/FSlider/Index'; // Başarılıysa yönlendir
+                } else {
+                    alert('Silme işlemi başarısız!');
+                }
+            });
+
+    }
+</script>
 

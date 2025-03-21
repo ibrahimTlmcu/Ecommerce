@@ -35,9 +35,6 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
         public IActionResult CreateCategory()
         {
             CategoryViewBagList();
-
-
-
             return View();
         }
 
