@@ -41,11 +41,13 @@ namespace Ecommerce.Catalog.Controllers
         //  ct.BrandName = createBrand.name;
 
         //  gibi islemlerden kurutlduk 
+
         public async Task<IActionResult> CreateBrand(CreateBrandDto createBrandDto)
         {
             await _BrandService.CreateBrandAsync(createBrandDto);
             return Ok("Marka islemi basariyla eklendi.");
         }
+
 
         [HttpDelete]
 

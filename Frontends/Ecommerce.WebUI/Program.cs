@@ -1,8 +1,16 @@
 
+using Ecommerce.Catalog.Services.SpecialOfferServices;
+using Ecommerce.WebUI.Areas.Admin.Controllers;
 using Ecommerce.WebUI.Handlers;
 using Ecommerce.WebUI.Services;
+using Ecommerce.WebUI.Services.CatalogServices.AboutService;
+using Ecommerce.WebUI.Services.CatalogServices.BrandService;
 using Ecommerce.WebUI.Services.CatalogServices.CategoryServices;
+using Ecommerce.WebUI.Services.CatalogServices.FeatureSliderServices;
+using Ecommerce.WebUI.Services.CatalogServices.FeautureService;
+using Ecommerce.WebUI.Services.CatalogServices.OfferDiscountService;
 using Ecommerce.WebUI.Services.CatalogServices.ProductServices;
+using Ecommerce.WebUI.Services.CatalogServices.SpecialOfferServices;
 using Ecommerce.WebUI.Services.Concrate;
 using Ecommerce.WebUI.Services.Interfaces;
 using Ecommerce.WebUI.Settings;
@@ -62,6 +70,11 @@ builder.Services.Configure<ServiceApiSettings>(builder.Configuration.GetSection(
 builder.Services.AddScoped<ResourceOwnerPasswordTokenHandler>();
 builder.Services.AddScoped<ClientCredentialTokenHandler>();
 builder.Services.AddScoped<IClientCredentialTokenService, ClientCredentialTokenService>();
+builder.Services.AddScoped<ISpecialOfferServices, SpecialOfferSerivce>();
+builder.Services.AddScoped<IFeatureService, FeatureService>();
+builder.Services.AddScoped<IOfferDiscountService, OfferDiscountService>();
+
+// Service interfacten implemnete etmeyhi unutma 
 
 var values = builder.Configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
 builder.Services.AddHttpClient<IUserService, UserService>(opt =>
@@ -79,14 +92,47 @@ builder.Services.AddHttpClient<IProductService, ProductService>(client =>
 {
     client.BaseAddress = new Uri("http://localhost:5085/services/product/"); // <-- API adresini buraya yaz!
 });
-builder.Services.AddHttpClient<IProductService, ProductService>(opt =>
+
+builder.Services.AddHttpClient<ISpecialOfferServices, SpecialOfferSerivce>(client =>
+{
+    client.BaseAddress = new Uri("http://localhost:5085/services/catalog/"); // <-- API adresini buraya yaz!
+}).AddHttpMessageHandler<ClientCredentialTokenHandler>();
+
+builder.Services.AddHttpClient<IFeatureSliderService, FeatureSliderService>(client =>
+{
+    client.BaseAddress = new Uri("http://localhost:5085/services/catalog/"); // <-- API adresini buraya yaz!
+}).AddHttpMessageHandler<ClientCredentialTokenHandler>();
+
+builder.Services.AddHttpClient<IFeatureService, FeatureService>(client =>
+{
+    client.BaseAddress = new Uri("http://localhost:5085/services/catalog/"); // <-- API adresini buraya yaz!
+}).AddHttpMessageHandler<ClientCredentialTokenHandler>();
+
+
+// Service interfacten implemnete etmeyhi unutma 
+builder.Services.AddHttpClient<IOfferDiscountService, OfferDiscountService>(client =>
+{
+    client.BaseAddress = new Uri("http://localhost:5085/services/catalog/"); // <-- API adresini buraya yaz!
+}).AddHttpMessageHandler<ClientCredentialTokenHandler>();
+
+builder.Services.AddHttpClient<IBrandService, BrandService>(opt =>
 {
     opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}");
+    //client.BaseAddress = new Uri("http://localhost:5085/services/catalog/"); // <-- API adresini buraya yaz!
 }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
+
+builder.Services.AddHttpClient<IAboutService, AboutService>(opt =>
+{
+    opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}");
+    //client.BaseAddress = new Uri("http://localhost:5085/services/catalog/"); // <-- API adresini buraya yaz!
+}).AddHttpMessageHandler<ClientCredentialTokenHandler>();
+
 
 
 builder.Services.AddHttpClient<ClientCredentialTokenService>();
 
+
+// Service interfacten implemnete etmeyhi unutma 
 
 builder.Services.AddTransient<ClientCredentialTokenHandler>();
 
