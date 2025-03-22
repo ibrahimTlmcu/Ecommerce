@@ -1,5 +1,6 @@
 ﻿using Ecommerce.DtoLayer.CatalogDtos.FeatureSliderDto;
 
+
 namespace Ecommerce.WebUI.Services.CatalogServices.FeatureSliderServices
 {
     public interface IFeatureSliderService

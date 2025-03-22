@@ -26,7 +26,7 @@ namespace Ecommerce.Catalog.Controllers
         }
 
 
-        [HttpGet("ProductImagesByProductId")]
+        [HttpGet("ProductImagesByProductId/{id}")]
 
         public async Task<IActionResult> ProductImagesByProductId(string id)
         {

@@ -1,7 +1,6 @@
 ﻿
-
-
 using Ecommerce.DtoLayer.CatalogDtos.FeatureSliderDto;
+
 using Newtonsoft.Json;
 
 namespace Ecommerce.WebUI.Services.CatalogServices.FeatureSliderServices

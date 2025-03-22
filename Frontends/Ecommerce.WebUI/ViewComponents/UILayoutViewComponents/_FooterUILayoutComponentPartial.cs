@@ -1,5 +1,6 @@
 ﻿using Ecommerce.Catalog.Dtos.AboutDto;
 using Ecommerce.DtoLayer.CatalogDtos.AboutDtos;
+using Ecommerce.WebUI.Services.CatalogServices.AboutService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -15,26 +16,17 @@ namespace Ecommerce.WebUI.VıewComponents.UILayoutViewComponents
     {
 
 
-        private readonly IHttpClientFactory _httpClientFactory;
-        public _FooterUILayoutComponentPartial(IHttpClientFactory httpClientFactory)
+        private readonly IAboutService _aboutService;
+
+        public _FooterUILayoutComponentPartial(IAboutService aboutService)
         {
-            _httpClientFactory = httpClientFactory;
+            _aboutService = aboutService;
         }
-     
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7078/api/Abouts");
 
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultAboutDto>>(jsonData);
-                return View(values);
-            }
-            //Serialeze Metinde => Jsona donusum yapiyor Ekle Guncelle daha cok 
-            //Deserialeize Jsondan => Metine  Listele idye gore getir daha cok 
-            return View();
+            var values = await _aboutService.GettAllAboutAsync();
+            return View(values);
         }
 
     }

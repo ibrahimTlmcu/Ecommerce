@@ -24,7 +24,7 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
         [Route("Index")]
         public async Task<IActionResult> Index()
         {
-
+            AboutViewBagList();
             var values = await _AboutService.GettAllAboutAsync();
             return View(values);
         }
