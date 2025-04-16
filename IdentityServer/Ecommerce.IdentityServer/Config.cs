@@ -75,7 +75,7 @@ namespace Ecommerce.IdentityServer
                 ClientName ="EcommerceManagerUser",
                 ClientSecrets ={new Secret ("ecommercesecret".Sha256())},
                 AllowedGrantTypes=GrantTypes.ResourceOwnerPassword,
-                AllowedScopes ={ "CatalogFullPermission", "CatalogReadPermission","BasketFullPermission",
+                AllowedScopes ={ "CatalogFullPermission", "CatalogReadPermission","BasketFullPermission", "DiscountFullPermission",
                     "OcelotFullPermission","CommentFullPermission","PaymentFullPermission","ImageFullPermission",
                   IdentityServerConstants.LocalApi.ScopeName,
                   IdentityServerConstants.StandardScopes.Email,

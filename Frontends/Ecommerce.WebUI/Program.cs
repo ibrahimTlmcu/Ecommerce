@@ -8,6 +8,7 @@ using Ecommerce.WebUI.Services.CatalogServices.AboutService;
 using Ecommerce.WebUI.Services.CatalogServices.BasketServices;
 using Ecommerce.WebUI.Services.CatalogServices.BrandService;
 using Ecommerce.WebUI.Services.CatalogServices.CategoryServices;
+using Ecommerce.WebUI.Services.CatalogServices.DiscountService;
 using Ecommerce.WebUI.Services.CatalogServices.FeatureSliderServices;
 using Ecommerce.WebUI.Services.CatalogServices.FeautureService;
 using Ecommerce.WebUI.Services.CatalogServices.OfferDiscountService;
@@ -125,6 +126,12 @@ builder.Services.AddHttpClient<IFeatureService, FeatureService>(client =>
 {
     client.BaseAddress = new Uri("http://localhost:5085/services/catalog/"); // <-- API adresini buraya yaz!
 }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
+
+builder.Services.AddHttpClient<IDiscountService, DiscountService>(opt =>
+{
+    opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}"); // <-- API adresini buraya yaz!
+}).AddHttpMessageHandler<ClientCredentialTokenHandler>();
+ 
 
 
 // Service interfacten implemnete etmeyhi unutma 

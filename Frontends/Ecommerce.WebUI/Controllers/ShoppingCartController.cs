@@ -1,7 +1,9 @@
 ﻿using Ecommerce.DtoLayer.BasketDtos;
 using Ecommerce.WebUI.Services.CatalogServices.BasketServices;
+using Ecommerce.WebUI.Services.CatalogServices.DiscountService;
 using Ecommerce.WebUI.Services.CatalogServices.ProductServices;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Ecommerce.WebUI.Controllers
 {
@@ -10,15 +12,27 @@ namespace Ecommerce.WebUI.Controllers
 
         private readonly IProductService _productService;//productid erisim icin kullanacaz
         private readonly IBasketService _basketService;
+        private readonly IDiscountService _discountService;
 
-        public ShoppingCartController(IProductService productService, IBasketService basketService)
+        public ShoppingCartController(IProductService productService, IBasketService basketService, IDiscountService discountService)
         {
             _productService = productService;
             _basketService = basketService;
+            _discountService = discountService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string code , int discountRate,decimal totalNewPriceWithDiscount)
         {
+            ViewBag.code = code;
+            ViewBag.discountRate = discountRate;
+            ViewBag.totalNewPriceWithDiscount = totalNewPriceWithDiscount;
+            var values = await _basketService.GetBasket();
+            ViewBag.total = values.TotalPrice;
+            var totalPriceWithTax = values.TotalPrice + values.TotalPrice / 100 * 10;
+            var tax = values.TotalPrice / 100 * 10;
+            ViewBag.totalPriceWithTax = totalPriceWithTax; 
+            ViewBag.tax = tax;  
+
             return View();
         }
 
