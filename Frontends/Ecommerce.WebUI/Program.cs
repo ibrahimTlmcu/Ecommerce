@@ -1,9 +1,11 @@
 
+
 using Ecommerce.Catalog.Services.SpecialOfferServices;
 using Ecommerce.WebUI.Areas.Admin.Controllers;
 using Ecommerce.WebUI.Handlers;
 using Ecommerce.WebUI.Services;
 using Ecommerce.WebUI.Services.CatalogServices.AboutService;
+using Ecommerce.WebUI.Services.CatalogServices.BasketServices;
 using Ecommerce.WebUI.Services.CatalogServices.BrandService;
 using Ecommerce.WebUI.Services.CatalogServices.CategoryServices;
 using Ecommerce.WebUI.Services.CatalogServices.FeatureSliderServices;
@@ -16,30 +18,41 @@ using Ecommerce.WebUI.Services.CatalogServices.SpecialOfferServices;
 using Ecommerce.WebUI.Services.Concrate;
 using Ecommerce.WebUI.Services.Interfaces;
 using Ecommerce.WebUI.Settings;
+using IdentityModel.AspNetCore.AccessTokenManagement;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Net.Http.Headers;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+
+//{
+
+//    options.MapInboundClaims = false;
+
+//    options.Authority = builder.Configuration["IdentityServerURL"];
+
+//    options.Audience = "ResourceBasket";
+
+//});
+JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear(); // Varsayýlan claim eþlemesini sil
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddCookie(JwtBearerDefaults.AuthenticationScheme,
-    opt =>
+    .AddJwtBearer(options =>
     {
-        opt.LoginPath = "/Login/Index";//Giris yapmayan kullanici gidecegi sayfa
-        opt.LogoutPath = "/Login/Index";//Cikis yapilan sayfa
-        opt.AccessDeniedPath = "/Login/Index";//Yetkisi olmayan kullanici gidecegi sayfa
-        opt.ExpireTimeSpan = TimeSpan.FromMinutes(10);//Oturum suresi
-        opt.Cookie.HttpOnly = true;//•	Bu ayar, çerezin sadece HTTP istekleriyle eriþilebilir olmasýný saðlar.
-                                   //JavaScript gibi istemci tarafý betikleri bu çereze eriþemez
-        opt.Cookie.SameSite = SameSiteMode.Strict;//•	Bu ayar, çerezin sadece ayný site içerisindeki isteklerle gönderilmesini saðlar.
-                                                  //Bu, CSRF (Cross-Site Request Forgery) saldýrýlarýna karþý koruma saðlar. SameSiteMode.Strict deðeri,
-                                                  //çerezin üçüncü taraf sitelerden gelen isteklerle gönderilmesini tamamen engeller.
-        opt.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;// SameAsRequest deðeri, çerezin sadece isteðin güvenli olup olmamasýna
-                                                                   // baðlý olarak gönderilmesini saðlar. Yani, HTTPS isteklerinde çerez güvenli olarak
-                                                                   // iþaretlenir, HTTP isteklerinde ise güvenli olarak iþaretlenmez
-        opt.Cookie.Name = "EcommerceJwt";
+        options.Authority = "http://localhost:5001";
+        options.Audience = "EcommerceManagerId";
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            NameClaimType = "sub",  // sub claim'ini NameIdentifier gibi kullan
+            RoleClaimType = "role"
+        };
     });
+
+
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
     AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, opt =>
@@ -56,15 +69,15 @@ builder.Services.AddHttpContextAccessor();
 // HttpContext'e eriþmek istediðinizde faydalýdýr.
 builder.Services.AddScoped<Ecommerce.WebUI.Services.CatalogServices.ProductServices.IProductService, Ecommerce.WebUI.Services.CatalogServices.ProductServices.ProductService>();
 
-
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IIdentityService, IDentityService>();
-
+builder.Services.AddHttpContextAccessor();
 // Add services to the container
 builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddAccessTokenManagement();
 
 builder.Services.Configure<ClientSettings>(builder.Configuration.GetSection("ClientSettings"));
 builder.Services.Configure<ServiceApiSettings>(builder.Configuration.GetSection("ServiceApiSettings"));
@@ -146,6 +159,23 @@ builder.Services.AddHttpClient<IProductDetailService, ProductDetailService>(opt 
 }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
 
 
+
+// Doðru HttpClient konfigürasyonu:
+builder.Services.AddHttpClient<IBasketService, BasketService>(client =>
+{
+    client.BaseAddress = new Uri("http://localhost:7246/api/");
+    client.DefaultRequestHeaders.Accept.Clear();
+    client.DefaultRequestHeaders.Accept.Add(
+        new MediaTypeWithQualityHeaderValue("application/json"));
+}).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+
+builder.Services.Configure<ClientSettings>(builder.Configuration.GetSection("ClientSettings"));
+builder.Services.Configure<ServiceApiSettings>(builder.Configuration.GetSection("ServiceApiSettings"));
+builder.Services.AddSingleton<IClientAccessTokenCache, ClientAccessTokenCache>();
+builder.Services.AddScoped<IClientCredentialTokenService, ClientCredentialTokenService>();
+
+
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddHttpClient<ClientCredentialTokenService>();
 

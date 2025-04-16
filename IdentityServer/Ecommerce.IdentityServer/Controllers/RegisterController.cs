@@ -36,6 +36,7 @@ namespace Ecommerce.IdentityServer.Controllers
                 Email = userRegisterDto.Email,
                 Name = userRegisterDto.Name,
                 Surname = userRegisterDto.Surname,
+                
             };
             var result = await _userManager.CreateAsync(values, userRegisterDto.Password);
             

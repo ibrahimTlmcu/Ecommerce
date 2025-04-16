@@ -14,7 +14,27 @@ namespace Ecommerce.Basket.Settings
             _port = port;
         }
 
-        public void Connect() => _connectionMultiplexer = ConnectionMultiplexer.Connect($"{_host}:{_port}");
+        public void Connect()
+
+        {
+
+            try
+
+            {
+
+                _connectionMultiplexer = ConnectionMultiplexer.Connect($"{_host}:{_port}");
+
+            }
+
+            catch (Exception ex)
+
+            {
+
+                throw new Exception("Failed to connect to Redis", ex);
+
+            }
+
+        }
         public IDatabase GetDb(int db = 1) => _connectionMultiplexer.GetDatabase(0);
     }
 }

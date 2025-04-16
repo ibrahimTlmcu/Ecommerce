@@ -1,14 +1,17 @@
-﻿namespace Ecommerce.Basket.LoginServices
-{
-    public class LoginService : ILoginService
-    {
-        private readonly IHttpContextAccessor _httpContextAccessor;
-        public LoginService(IHttpContextAccessor contextAccessor)
-        {
-            _httpContextAccessor = contextAccessor;
-        }
+﻿using Ecommerce.Basket.LoginServices;
+using Microsoft.AspNetCore.Authentication;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Security.Claims;
 
-        public string GetUserId => _httpContextAccessor.HttpContext.User.FindFirst("sub").Value;
-        // GIRIS yapan kullanicinin sub yakalayacagiz sub icinde token var 
+public class LoginService : ILoginService
+{
+    private readonly IHttpContextAccessor _httpContextAccessor;
+    public LoginService(IHttpContextAccessor contextAccessor)
+    {
+        _httpContextAccessor = contextAccessor;
     }
+
+    public string GetUserId => _httpContextAccessor.HttpContext.User.FindFirst("sub").Value;
+
 }

@@ -1,4 +1,4 @@
-using Ecommerce.Basket.LoginServices;
+  using Ecommerce.Basket.LoginServices;
 using Ecommerce.Basket.Services;
 using Ecommerce.Basket.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -6,19 +6,29 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Options;
 using System.IdentityModel.Tokens.Jwt;
+using static System.Net.WebRequestMethods;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var requireAuthorizePolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
 JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("sub");
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
 {
-    opt.Authority = builder.Configuration["IdentityServerUrl"];
-    opt.Audience = "ResourceBasket";
-    opt.RequireHttpsMetadata = false;
+    options.Authority = "http://localhost:5001";
+    options.RequireHttpsMetadata = false;
+    options.Audience = "ResourceBasket";
+
 });
+
+//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+//{
+//    opt.Authority = "http://localhost:5001"; 
+//    opt.Audience = "ResourceBasket";
+//    opt.RequireHttpsMetadata = false;
+//});
+
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ILoginService, LoginService>();
@@ -31,6 +41,7 @@ builder.Services.AddSingleton<RedisService>(sp =>
     redis.Connect();
     return redis;
 });
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddControllers(opt =>
 {
@@ -50,6 +61,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseHttpsRedirection();
 app.UseAuthentication();

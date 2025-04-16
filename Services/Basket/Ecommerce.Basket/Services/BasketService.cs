@@ -1,31 +1,51 @@
 ﻿using Ecommerce.Basket.Dtos;
-using Ecommerce.Basket.Settings;
-
 using Ecommerce.Basket.Services;
-using System.Text.Json;
+using Ecommerce.Basket.Settings;
+using Newtonsoft.Json;
 
-namespace Ecommerce.Basket.Services
+public class BasketService : IBasketService
 {
-    public class BasketService : IBasketService
-    {
-        private readonly RedisService _redisService;
-        public BasketService(RedisService redisService)
-        {
-            _redisService = redisService;
-        }
-        public async Task DeleteBasket(string userId)
-        {
-            await _redisService.GetDb().KeyDeleteAsync(userId);
-        }
-        public async Task<BasketTotalDto> GetBasket(string userId)
-        {
-            var existBasket = await _redisService.GetDb().StringGetAsync(userId);
-            return JsonSerializer.Deserialize<BasketTotalDto>(existBasket);
-        }
-        public async Task SaveBasket(BasketTotalDto basketTotalDto)
-        {
-            await _redisService.GetDb().StringSetAsync(basketTotalDto.UserId, JsonSerializer.Serialize(basketTotalDto));
+    private readonly RedisService _redisService;
 
+    public BasketService(RedisService redisService)
+    {
+        _redisService = redisService;
+    }
+
+    // Sepeti silme işlemi
+    public async Task DeleteBasketAsync(string userId)
+    {
+        await _redisService.GetDb().KeyDeleteAsync(userId);
+    }
+
+    // Sepeti alma işlemi
+    public async Task<BasketTotalDto> GetBasketAsync(string userId)
+    {
+        try
+        {
+            // Redis'ten sepet verisini al
+            var existBasket = await _redisService.GetDb().StringGetAsync(userId);
+
+            // Sepet verisi varsa, deserialize et ve döndür
+            if (!existBasket.IsNullOrEmpty)
+            {
+                return JsonConvert.DeserializeObject<BasketTotalDto>(existBasket);
+            }
+
+
+            // Eğer veri yoksa null döndür
+            return null;
         }
+        catch (Exception)
+        {
+            throw; // Hata varsa dışarı fırlat
+        }
+    }
+
+    // Sepeti kaydetme işlemi
+    public async Task SaveBasketAsync(BasketTotalDto basketTotalDto)
+    {
+        // Sepet verisini serialize edip Redis'e kaydet
+        await _redisService.GetDb().StringSetAsync(basketTotalDto.UserId, JsonConvert.SerializeObject(basketTotalDto));
     }
 }

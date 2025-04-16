@@ -37,6 +37,7 @@ namespace Ecommerce.WebUI.Handlers
             {
                 //
             }
+            var userClaims = _httpContextAccessor.HttpContext.User.Claims;
             return response;
         }
     }
