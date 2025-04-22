@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce.Cargo.WebApi.Controllers
 {
-    [Authorize]
+    
     [Route("api/[controller]")]
     [ApiController]
     public class CargoCustomersController : ControllerBase
@@ -45,7 +45,8 @@ namespace Ecommerce.Cargo.WebApi.Controllers
                 Name = createCargoCustomerDto.Name,
                 Phone = createCargoCustomerDto.Phone,
                 Surname = createCargoCustomerDto.Surname,
-                UserCustomerId = createCargoCustomerDto.UserCustomerId
+                UserCustomerId = createCargoCustomerDto.UserCustomerId,
+
             };
             _cargoCustomerService.TInsert(cargoCustomer);
             return Ok("Kargo Müşteri Ekleme İşlemi Başarıyla Yapıldı");
@@ -83,5 +84,5 @@ namespace Ecommerce.Cargo.WebApi.Controllers
             return Ok(_cargoCustomerService.TGetCargoCustomerById(id));
         }
     }
-
-}
+    //http://localhost:7190/api/CargoCustomers/GetCargoCustomerById?id=375b2797-4692-4010-8a36-cd78d44f04a7
+}   //https://localhost:7165/Admin/Users/UserAddressInfo/7a016180-f2a3-463b-9f83-62136f2a5cb5

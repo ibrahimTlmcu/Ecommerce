@@ -1,11 +1,13 @@
 using Ecommerce.Order.Application.Features.CQRS.Handlers.AddresHandlers;
 using Ecommerce.Order.Application.Features.CQRS.Handlers.OrderDetailHandlers;
 using Ecommerce.Order.Application.Features.CQRS.Queries.AddresQueires;
+using Ecommerce.Order.Application.Features.Mediator.Handlers.OrderingHandlers;
 using Ecommerce.Order.Application.Interfaces;
 using Ecommerce.Order.Application.Services;
 using Ecommerce.Order.Persistence.Context;
 using Ecommerce.Order.Persistence.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using static Ecommerce.Order.Application.Features.CQRS.Handlers.OrderDetailHandlers.UpdateOrderDetailQueryHandler;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,9 +24,19 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 builder.Services.AddDbContext<OrderContext>();
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+// 2. Repository kaydý (Scoped olarak)
+builder.Services.AddScoped(typeof(IOrderingRepository), typeof(OrderingRepository));
+// Diðer handler'lar...
 builder.Services.AddApplicationService(builder.Configuration);
 
+// Startup.cs veya Program.cs'de
 
+
+builder.Services.AddDbContext<OrderContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
+        sqlOptions => sqlOptions.EnableRetryOnFailure());
+});
 
 builder.Services.AddScoped<GetAddressQueryHandler>();
 builder.Services.AddScoped<GetAddressByIdQueryHandler>();

@@ -1,4 +1,6 @@
-﻿using Ecommerce.WebUI.Services.Interfaces;
+﻿using Ecommerce.WebUI.Services.CatalogServices.CargoService.CargoCompanyService;
+using Ecommerce.WebUI.Services.CatalogServices.CargoService.CargoCustomerServices;
+using Ecommerce.WebUI.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce.WebUI.Controllers
@@ -7,9 +9,12 @@ namespace Ecommerce.WebUI.Controllers
     {
         private readonly IUserService _userService;
 
-        public UserController(IUserService userService)
+        private readonly ICargoCustomerService _cargoCustomerService;
+
+        public UserController(IUserService userService, ICargoCustomerService cargoCustomerService)
         {
             _userService = userService;
+            _cargoCustomerService = cargoCustomerService;
         }
 
         public async Task< IActionResult> Index()
@@ -17,5 +22,7 @@ namespace Ecommerce.WebUI.Controllers
             var values = await _userService.GetUserInfo();
             return View(values);
         }
+    
+
     }
 }

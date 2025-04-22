@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+
+@await Component.InvokeAsync("_UserLayoutHeadComponentPartial")
+
+<body>
+    <div class="container-scroller d-flex">
+        @await Component.InvokeAsync("_UserLayoutSideBarComponentPartial")
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:../../partials/_navbar.html -->
+            @await Component.InvokeAsync("_UserLayoutNavBarComponentPartial")
+           
+            <!-- partial -->
+            @RenderBody()
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- base:js -->
+    <script src="~/spica-1.0.0/spica-1.0.0/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="~/spica-1.0.0/spica-1.0.0/js/off-canvas.js"></script>
+    <script src="~/spica-1.0.0/spica-1.0.0/js/hoverable-collapse.js"></script>
+    <script src="~/spica-1.0.0/spica-1.0.0/js/template.js"></script>
+    <!-- endinject -->
+ 
+    <!-- End custom js for this page-->
+</body>
+
+</html>

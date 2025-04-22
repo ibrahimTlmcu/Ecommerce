@@ -1,114 +1,95 @@
 ﻿<header class="main-header dark-bg">
 
     <!-- Logo -->
-    <a href="../index.html" class="logo dark-bg">
-        <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><img src="~/images/logos/mulhtishop1.jpg" style="width:50px;height50px; important!" alt="Ovio"></span>
-        <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><img src="~/images/logos/mulhtishop1.jpg" style="width:200px;height50px; important!" alt="Ovio"></span>
+    <a href="/Home/Index" class="logo dark-bg">
+        <span class="logo-mini">
+            <img src="~/images/logos/mulhtishop1.jpg" alt="Logo" style="width:50px; height:50px;">
+        </span>
+        <span class="logo-lg">
+            <img src="~/images/logos/mulhtishop1.jpg" alt="Logo" style="width:200px; height:50px;">
+        </span>
     </a>
 
-    <!-- Header Navbar -->
-    <nav class="navbar navbar-static-top" role="navigation">
-        <!-- Sidebar toggle button-->
-        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button"> <span class="sr-only">Toggle navigation</span> </a>
-        <div class="pull-left search-box">
-            <form action="#" method="get" class="search-form">
-                <div class="input-group">
-                    <input type="text" name="search" class="form-control" placeholder="Search...">
-                    <span class="input-group-btn">
-                        <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i> </button>
-                    </span>
-                </div>
-            </form>
-            <!-- search form -->
-        </div>
-        <!-- Navbar Right Menu -->
+    <!-- Navbar -->
+    <nav class="navbar navbar-static-top">
+        <!-- Sidebar Toggle -->
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+
+        <!-- Search Box -->
+        <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Ara...">
+            </div>
+        </form>
+
+        <!-- Right Menu -->
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+                <!-- Mesajlar -->
                 <li class="dropdown messages-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="icon-envelope"></i>
-                        <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+                        <span class="label label-success">4</span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="header">You have 4 messages</li>
+                        <li class="header">4 yeni mesajınız var</li>
                         <li>
                             <ul class="menu">
                                 <li>
                                     <a href="#">
-                                        <div class="pull-left"><img src="~/MainDownload-OvioAdmin-html5-template/dist/img/img1.jpg" class="img-circle" alt="User Image"></div>
-                                        <h4>Florence Douglas</h4>
-                                        <p>Lorem ipsum dolor sit amet.</p>
-                                        <p><small><i class="fa fa-clock-o"></i> 2 mins</small></p>
+                                        <div class="pull-left">
+                                            <img src="~/MainDownload-OvioAdmin-html5-template/dist/img/img1.jpg" class="img-circle" alt="User Image">
+                                        </div>
+                                        <h4>Florence Douglas <small><i class="fa fa-clock-o"></i> 2 dk</small></h4>
+                                        <p>Merhaba, nasılsınız?</p>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="pull-left"><img src="~/MainDownload-OvioAdmin-html5-template/html/dist/img/img2.jpg" class="img-circle" alt="User Image"></div>
-                                        <h4>Douglas Smith</h4>
-                                        <p>Lorem ipsum dolor sit amet.</p>
-                                        <p><small><i class="fa fa-clock-o"></i> 15 mins</small></p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="pull-left"><img src="~/MainDownload-OvioAdmin-html5-template/html/dist/img/img3.jpg" class="img-circle" alt="User Image"></div>
-                                        <h4>Lorence Deo</h4>
-                                        <p>Lorem ipsum dolor sit amet.</p>
-                                        <p><small><i class="fa fa-clock-o"></i> 35 mins</small></p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="pull-left"><img src="~/MainDownload-OvioAdmin-html5-template/html/dist/img/img1.jpg" class="img-circle" alt="User Image"></div>
-                                        <h4>Florence Douglas</h4>
-                                        <p>Lorem ipsum dolor sit amet.</p>
-                                        <p><small><i class="fa fa-clock-o"></i> 2 mins</small></p>
-                                    </a>
-                                </li>
+                                <!-- diğer mesajlar... -->
                             </ul>
                         </li>
-                        <li class="footer"><a href="#">Check all notifications</a></li>
+                        <li class="footer"><a href="#">Tüm mesajları oku</a></li>
                     </ul>
                 </li>
-                <!-- messages-menu -->
-                <!-- Notifications Menu -->
+
+                <!-- Bildirimler -->
                 <li class="dropdown notifications-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="icon-megaphone"></i>
-                        <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+                        <span class="label label-warning">4</span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="header">Notifications</li>
+                        <li class="header">4 bildirim</li>
                         <li>
                             <ul class="menu">
-                                <li><a href="#"><i class="icon-lightbulb"></i> Lorem ipsum dolor sit amet </a> </li>
-                                <li><a href="#"><i class="icon-map-pin blue"></i> Lorem ipsum dolor sit amet </a> </li>
-                                <li><a href="#"><i class="icon-refresh orange"></i> Lorem ipsum dolor sit amet </a> </li>
-                                <li><a href="#"><i class="icon-map-pin blue"></i> Lorem ipsum dolor sit amet </a> </li>
+                                <li><a href="#"><i class="icon-lightbulb"></i> Yeni özellik eklendi</a></li>
+                                <!-- diğer bildirimler -->
                             </ul>
                         </li>
-                        <li class="footer"><a href="#">View all</a></li>
+                        <li class="footer"><a href="#">Tüm bildirimleri gör</a></li>
                     </ul>
                 </li>
-                <!-- Tasks Menu -->
-                <!-- User Account Menu -->
+
+                <!-- Kullanıcı -->
                 <li class="dropdown user user-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="~/MainDownload-OvioAdmin-html5-template/html/dist/img/img1.jpg" class="user-image" alt="User Image"> <span class="hidden-xs">Florence Douglas</span> </a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="~/MainDownload-OvioAdmin-html5-template/html/dist/img/img1.jpg" class="user-image" alt="User Image">
+                        <span class="hidden-xs">Florence Douglas</span>
+                    </a>
                     <ul class="dropdown-menu">
-                        <li class="user-header">
-                            <div class="pull-left user-img"><img src="~/MainDownload-OvioAdmin-html5-template/dist/img/img1.jpg" class="img-responsive" alt="User"></div>
-                            <p class="text-left">Florence Douglas <small>florence</small> </p>
-                            <div class="view-link text-left"><a href="#">View Profile</a> </div>
+                        <li class="user-header text-center">
+                            <img src="~/MainDownload-OvioAdmin-html5-template/dist/img/img1.jpg" class="img-circle" alt="User Image">
+                            <p>Florence Douglas <small>Yönetici</small></p>
                         </li>
-                        <li><a href="#"><i class="icon-profile-male"></i> My Profile</a></li>
-                        <li><a href="#"><i class="icon-wallet"></i> My Balance</a></li>
-                        <li><a href="#"><i class="icon-envelope"></i> Inbox</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#"><i class="icon-gears"></i> Account Setting</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                        <li class="user-footer">
+                            <div class="pull-left">
+                                <a href="#" class="btn btn-default btn-flat">Profil</a>
+                            </div>
+                            <div class="pull-right">
+                                <a href="#" class="btn btn-default btn-flat">Çıkış</a>
+                            </div>
+                        </li>
                     </ul>
                 </li>
             </ul>

@@ -1,27 +1,38 @@
 
 
 using Ecommerce.Catalog.Services.SpecialOfferServices;
+using Ecommerce.Order.Application.Interfaces;
+using Ecommerce.Order.Persistence.Context;
+using Ecommerce.Order.Persistence.Repositories;
 using Ecommerce.WebUI.Areas.Admin.Controllers;
 using Ecommerce.WebUI.Handlers;
 using Ecommerce.WebUI.Services;
 using Ecommerce.WebUI.Services.CatalogServices.AboutService;
 using Ecommerce.WebUI.Services.CatalogServices.BasketServices;
 using Ecommerce.WebUI.Services.CatalogServices.BrandService;
+using Ecommerce.WebUI.Services.CatalogServices.CargoService.CargoCompanyService;
+using Ecommerce.WebUI.Services.CatalogServices.CargoService.CargoCustomerServices;
 using Ecommerce.WebUI.Services.CatalogServices.CategoryServices;
 using Ecommerce.WebUI.Services.CatalogServices.DiscountService;
 using Ecommerce.WebUI.Services.CatalogServices.FeatureSliderServices;
 using Ecommerce.WebUI.Services.CatalogServices.FeautureService;
+using Ecommerce.WebUI.Services.CatalogServices.MessageService;
 using Ecommerce.WebUI.Services.CatalogServices.OfferDiscountService;
+using Ecommerce.WebUI.Services.CatalogServices.OrderService.OrderAddressServices;
+using Ecommerce.WebUI.Services.CatalogServices.OrderService.OrderOrderingServices;
 using Ecommerce.WebUI.Services.CatalogServices.ProductDetailServices;
 using Ecommerce.WebUI.Services.CatalogServices.ProductImageService;
 using Ecommerce.WebUI.Services.CatalogServices.ProductServices;
 using Ecommerce.WebUI.Services.CatalogServices.SpecialOfferServices;
+using Ecommerce.WebUI.Services.CatalogServices.UserIdentityService;
+using Ecommerce.WebUI.Services.CatalogServices.UserIdentityServices;
 using Ecommerce.WebUI.Services.Concrate;
 using Ecommerce.WebUI.Services.Interfaces;
 using Ecommerce.WebUI.Settings;
 using IdentityModel.AspNetCore.AccessTokenManagement;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -63,6 +74,8 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         opt.Cookie.Name = "EcommerceCookie";
         opt.SlidingExpiration = true;
     });
+
+
 
 builder.Services.AddAccessTokenManagement();
 builder.Services.AddHttpContextAccessor();
@@ -131,7 +144,13 @@ builder.Services.AddHttpClient<IDiscountService, DiscountService>(opt =>
 {
     opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}"); // <-- API adresini buraya yaz!
 }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
- 
+
+
+builder.Services.AddHttpClient<IMessageService, MessageService>(opt =>
+{
+    opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Message.Path}");
+    //client.BaseAddress = new Uri("http://localhost:5085/services/catalog/"); // <-- API adresini buraya yaz!
+}).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
 
 
 // Service interfacten implemnete etmeyhi unutma 
@@ -159,9 +178,56 @@ builder.Services.AddHttpClient<IProductImageService, ProductImageService>(opt =>
     //client.BaseAddress = new Uri("http://localhost:5085/services/catalog/"); // <-- API adresini buraya yaz!
 }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
 
+
+
+
+builder.Services.AddHttpClient<IOrderService, OrderAddressService>(opt =>
+{
+    opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Order.Path}");
+    //client.BaseAddress = new Uri("http://localhost:5085/services/catalog/"); // <-- API adresini buraya yaz!
+}).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+
+
+builder.Services.AddHttpClient<IOrderOrderingService, OrderOrderingService>(opt =>
+{
+    opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Order.Path}");
+    //client.BaseAddress = new Uri("http://localhost:5085/services/catalog/"); // <-- API adresini buraya yaz!
+}).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+
+
+
+builder.Services.AddHttpClient<ICargoCompanyService, CargoCompanyService>(opt =>
+{
+    opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Cargo.Path}");
+    //client.BaseAddress = new Uri("http://localhost:5085/services/catalog/"); // <-- API adresini buraya yaz!
+}).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+
+
+
+
+
+builder.Services.AddHttpClient<IUserIdentityService, UserIdentityService>(opt =>
+{
+    opt.BaseAddress = new Uri("http://localhost:5001"); // <-- API adresini buraya yaz!
+}).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+
+
+
+
+
+
+
+
 builder.Services.AddHttpClient<IProductDetailService, ProductDetailService>(opt =>
 {
     opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}");
+    //client.BaseAddress = new Uri("http://localhost:5085/services/catalog/"); // <-- API adresini buraya yaz!
+}).AddHttpMessageHandler<ClientCredentialTokenHandler>();
+
+
+builder.Services.AddHttpClient<ICargoCustomerService, CargoCustomerService>(opt =>
+{
+    opt.BaseAddress = new Uri("http://localhost:7190/api/CargoCustomers/");
     //client.BaseAddress = new Uri("http://localhost:5085/services/catalog/"); // <-- API adresini buraya yaz!
 }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
 
@@ -185,7 +251,6 @@ builder.Services.AddScoped<IClientCredentialTokenService, ClientCredentialTokenS
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddHttpClient<ClientCredentialTokenService>();
-
 
 // Service interfacten implemnete etmeyhi unutma 
 

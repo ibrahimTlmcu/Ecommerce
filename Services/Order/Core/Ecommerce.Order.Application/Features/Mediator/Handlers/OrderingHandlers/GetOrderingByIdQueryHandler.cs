@@ -10,8 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Ecommerce.Order.Application.Features.Mediator.Handlers.OrderingHandlers
-{
-    public class GetOrderingByIdQueryHandler : IRequestHandler<GetOrderingByIdQuery, GetOrderingByIdQueryResult>
+{//KONTROL ET
+    public class GetOrderingByIdQueryHandler : IRequestHandler<GetOrderingByIdUserQuery, GetOrderingByIdQueryResult>
     {
         private readonly IRepository<Ordering> _repository;
 
@@ -21,12 +21,12 @@ namespace Ecommerce.Order.Application.Features.Mediator.Handlers.OrderingHandler
         }
 
 
-        async Task<GetOrderingByIdQueryResult> IRequestHandler<GetOrderingByIdQuery, GetOrderingByIdQueryResult>.Handle(GetOrderingByIdQuery request, CancellationToken cancellationToken)
+        async Task<GetOrderingByIdQueryResult> IRequestHandler<GetOrderingByIdUserQuery, GetOrderingByIdQueryResult>.Handle(GetOrderingByIdUserQuery request, CancellationToken cancellationToken)
         {
             var values = await _repository.GetByIdAsync(request.Id);
             return new GetOrderingByIdQueryResult
             {
-                OrderDate = values.OrderDate,
+                OrderDate = values.OrderDate, 
                 OrderingId = values.OrderingId,
                 TotalPrice = values.TotalPrice,
                 UserId = values.UserId

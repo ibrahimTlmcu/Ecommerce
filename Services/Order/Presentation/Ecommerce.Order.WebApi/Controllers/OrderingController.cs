@@ -1,4 +1,4 @@
-﻿using Ecommerce.Order.Application.Features.CQRS.Commands.OrderDetailCommands;
+﻿ using Ecommerce.Order.Application.Features.CQRS.Commands.OrderDetailCommands;
 using Ecommerce.Order.Application.Features.Mediator.Commands.OrderingCommands;
 using Ecommerce.Order.Application.Features.Mediator.Handlers.OrderingHandlers;
 using Ecommerce.Order.Application.Features.Mediator.Queries.OrderingQueries;
@@ -33,7 +33,7 @@ namespace Ecommerce.Order.WebApi.Controllers
 
         public async Task<IActionResult> GetOrderingById(int id)
         {
-            var values = await _mediator.Send(new GetOrderingByIdQuery(id));
+            var values = await _mediator.Send(new GetOrderingByIdUserQuery(id));
             return Ok(values);
         }
 
@@ -59,5 +59,11 @@ namespace Ecommerce.Order.WebApi.Controllers
             return Ok("Sparis basariyla guncellendi");
         }
 
+        [HttpGet("GetOrderingsByUserId/{id}")]
+        public async Task<IActionResult> GetOrderingsByUserId(string id)
+        {
+            var values = await _mediator.Send(new GetOrderingByUserIdQuery(id));
+            return Ok(values);
+        }
     }
 }

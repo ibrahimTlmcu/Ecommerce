@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -17,6 +17,8 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\User\Data\" />
+    <Folder Include="Areas\User\Models\" />
     <Folder Include="Views\Shared\Components\NewFolder\" />
   </ItemGroup>
 
@@ -35,6 +37,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Services\Catalog\Ecommerce.Catalog\Ecommerce.Catalog.csproj" />
+    <ProjectReference Include="..\..\Services\Ecommerce.Message\Ecommerce.Message.csproj" />
+    <ProjectReference Include="..\..\Services\Order\Core\Ecommerce.Order.Application\Ecommerce.Order.Application.csproj" />
+    <ProjectReference Include="..\..\Service\Order\Infrastructure\Ecommerce.Order.Persistence\Ecommerce.Order.Persistence.csproj" />
     <ProjectReference Include="..\Ecommerce.DtoLayer\Ecommerce.DtoLayer.csproj" />
   </ItemGroup>
 
