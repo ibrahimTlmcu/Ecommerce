@@ -1,4 +1,5 @@
 ﻿using Ecommerce.DtoLayer.CatalogDtos.AboutDtos;
+using Ecommerce.WebUI.Services.CatalogServices.AboutService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -12,109 +13,70 @@ namespace Ecommerce.WebUI.Areas.Admin.Controllers
     public class AboutController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        public AboutController(IHttpClientFactory httpClientFactory)
+
+        private readonly IAboutService _AboutService;
+        public AboutController(IHttpClientFactory httpClientFactory, IAboutService AboutService)
         {
             _httpClientFactory = httpClientFactory;
+            _AboutService = AboutService;
         }
+
         [Route("Index")]
         public async Task<IActionResult> Index()
         {
-
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7078/api/Abouts");
-
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultAboutDto>>(jsonData);
-                return View(values);
-            }
-            //Serialeze Metinde => Jsona donusum yapiyor Ekle Guncelle daha cok 
-            //Deserialeize Jsondan => Metine  Listele idye gore getir daha cok 
-
-
-
-            return View();
-
-
+            AboutViewBagList();
+            var values = await _AboutService.GettAllAboutAsync();
+            return View(values);
         }
 
         [HttpGet]
         [Route("CreateAbout")]
         public IActionResult CreateAbout()
         {
-            ViewBag.v0 = "Ana Sayfa";
-            ViewBag.v1 = "Hakkimda";
-            ViewBag.v2 = "Hakkimizda";
-            ViewBag.v3 = "Hakkimda Islemleri";
-
+            AboutViewBagList();
             return View();
         }
+
         [HttpPost]
         [Route("CreateAbout")]
         public async Task<IActionResult> CreateAbout(CreateAboutDto createAboutDto)
         {
-            var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createAboutDto);
-            //json formatina donusturduk
-            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            //Bir contentc olarak atadim once turu sonra dili sonra mediator
-            var responseMessage = await client.PostAsync("https://localhost:7078/api/Abouts", stringContent);
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Index", "About", new { area = "Admin" });
-            }
-            return View();
-        }
 
+            await _AboutService.CreateAboutAsync(createAboutDto);
+            return RedirectToAction("Index", "About", new { area = "Admin" });
+        }
 
         [Route("DeleteAbout/{id}")]
         public async Task<IActionResult> DeleteAbout(string id)
         {
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync("https://localhost:7078/api/Abouts?id=" + id);
-
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Index", "About", new { area = "Admin" });
-            }
-            return View();
+            await _AboutService.DeleteAboutAsync(id);
+            return RedirectToAction("Index", "About", new { area = "Admin" });
         }
-
-
 
         [Route("UpdateAbout/{id}")]
         [HttpGet]
         public async Task<IActionResult> UpdateAbout(string id)
         {
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7078/api/Abouts/" + id);
+            AboutViewBagList();
+            var About = await _AboutService.GetByIdAboutAsync(id);
+            return View(About);
 
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<UpdateAboutDto>(jsonData);
-                return View(values);
-            }
-            return View();
         }
-
         [Route("UpdateAbout/{id}")]
-        [HttpPut("{id}")]
+        [HttpPost]
         public async Task<IActionResult> UpdateAbout(UpdateAboutDto updateAboutDto)
         {
-            var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(updateAboutDto);
-            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            await _AboutService.UpdateAboutAsync(updateAboutDto);
+            return RedirectToAction("Index", "About", new { area = "Admin" });
+        }
 
-            // URL'yi dinamik hale getir:
-            var responseMessage = await client.PutAsync($"https://localhost:7078/api/Abouts/{updateAboutDto.AboutId}", stringContent);
+        void AboutViewBagList()
+        {
 
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Index", "About", new { area = "Admin" });
-            }
-            return View();
+            ViewBag.v0 = "Kategori İşlemleri";
+            ViewBag.v1 = "Ana Sayfa";
+            ViewBag.v2 = "Kategoriler";
+            ViewBag.v3 = "Kategori Listesi";
         }
 
     }

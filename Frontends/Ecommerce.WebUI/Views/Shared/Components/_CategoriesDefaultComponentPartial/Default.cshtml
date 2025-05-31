@@ -1,30 +1,40 @@
 ﻿@model List<ResultCategoryDto>
 
 <div class="container-fluid pt-5">
-    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Categories</span></h2>
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4">
+        <span class="bg-secondary pr-3">Categories</span>
+    </h2>
     <div class="row px-xl-5 pb-3">
-
-
-
         @foreach (var item in Model)
         {
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <a class="text-decoration-none" href="">
-                    <div class="cat-item d-flex align-items-center mb-4">
-                        <div class="overflow-hidden" style="width: 100px; height: 100px;">
-                            <img class="img-fluid" src="@item.ImageUrl" alt="">
+                    <div class="cat-item d-flex align-items-center mb-4 shadow-sm rounded bg-white hover-shadow">
+                        <div class="overflow-hidden rounded-start" style="width: 100px; height: 100px;">
+                            <img class="img-fluid h-100 w-100 object-fit-cover" src="@item.ImageUrl" alt="">
                         </div>
                         <div class="flex-fill pl-3">
-                            <h6>@item.CategoryName</h6>
-                            <small class="text-body">Urunle</small>
+                            <h6 class="mb-1">@item.CategoryName</h6>
+                            <small class="text-body">Ürünle</small>
                         </div>
                     </div>
                 </a>
             </div>
-
         }
-         
-
-
     </div>
 </div>
+
+<style>
+    .hover-shadow {
+        transition: all 0.3s ease-in-out;
+    }
+
+        .hover-shadow:hover {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            transform: scale(1.02);
+        }
+
+    .object-fit-cover {
+        object-fit: cover;
+    }
+</style>

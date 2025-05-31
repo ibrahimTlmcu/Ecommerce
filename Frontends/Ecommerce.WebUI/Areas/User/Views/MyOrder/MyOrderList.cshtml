@@ -1,0 +1,70 @@
+﻿@using Ecommerce.DtoLayer.OrderDtos.OrderOrderingsDto
+@model List<ResultOrderingByUserIdDto>
+
+@{
+    ViewData["Title"] = "Siparişlerim";
+    Layout = "~/Areas/User/Views/UserLayout/Index.cshtml";
+    int count = 0;
+}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card shadow rounded-4">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4 text-primary">🧾 Sipariş Listem</h4>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead class="bg-gradient-primary text-white text-center">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Toplam Fiyat</th>
+                                        <th>Sipariş Tarihi</th>
+                                        <th>Durum</th>
+                                        <th>Detaylar</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                    @foreach (var item in Model)
+                                    {
+                                        count++;
+                                        <tr>
+                                            <td class="bg-light fw-semibold">@count</td>
+                                            <td>@item.TotalPrice ₺</td>
+                                            <td>@item.OrderDate.ToShortDateString()</td>
+                                            <td>
+                                                <span class="badge bg-success">Tamamlandı</span>
+                                                @* İsteğe bağlı olarak burada sipariş durumuna göre badge rengi değişebilir *@
+                                            </td>
+                                            <td>
+                                                <a href="#" class="btn btn-outline-info btn-sm rounded-pill">
+                                                    <i class="mdi mdi-eye"></i> Detaylar
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer mt-5">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body">
+                <div class="d-sm-flex justify-content-between text-muted small">
+                    <span>E-Ticaret © @DateTime.Now.Year</span>
+                    <span>
+                        Free <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap dashboard templates</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

@@ -21,10 +21,12 @@ namespace Ecommerce.Order.Application.Features.CQRS.Handlers.AddresHandlers
         public async Task Handle(UpdateAddressCommand command)
         {
             var values = await _repository.GetByIdAsync(command.AddressId);
-            values.Detail= command.Detail;
+            values.Detail1= command.Detail1;
             values.District= command.District;
             values.City= command.City;  
             values.UserId = command.UserId;
+            
+
 
             await _repository.UpdateAsync(values);
         }

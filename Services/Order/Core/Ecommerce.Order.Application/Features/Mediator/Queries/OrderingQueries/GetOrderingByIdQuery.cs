@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Ecommerce.Order.Application.Features.Mediator.Queries.OrderingQueries
 {
-    public class GetOrderingByIdQuery : IRequest<GetOrderingByIdQueryResult>
+    public class GetOrderingByIdUserQuery : IRequest<GetOrderingByIdQueryResult>
     {
         public int Id { get; set; }
-        public GetOrderingByIdQuery(int id)
+        public GetOrderingByIdUserQuery(int id)
         {
             Id = id;
         }

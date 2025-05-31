@@ -25,7 +25,7 @@ namespace Ecommerce.Order.Application.Features.CQRS.Handlers.AddresHandlers
             {
                 AddressId = x.AddressId,
                 City = x.City,
-                Detail = x.Detail,
+                Detail = x.Detail1,
                 District = x.District,
                 UserId = x.UserId
             }).ToList();

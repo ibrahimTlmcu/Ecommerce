@@ -18,6 +18,6 @@ namespace Ecommerce.Order.Application.Services
         {
             services.AddMediatR(cfg => 
             cfg.RegisterServicesFromAssembly(typeof(ServiceRegistiration).Assembly));   
-        }
+        }   
     }
 }

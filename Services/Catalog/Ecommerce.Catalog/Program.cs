@@ -13,6 +13,7 @@ using Ecommerce.Catalog.Services.ProductDetailServices;
 using Ecommerce.Catalog.Services.ProductImageServices;
 using Ecommerce.Catalog.Services.ProductServices;
 using Ecommerce.Catalog.Services.SpecialOfferServices;
+using Ecommerce.Catalog.Services.StatisticsService;
 using Ecommerce.Catalog.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
@@ -44,6 +45,7 @@ builder.Services.AddScoped<IOfferDiscountService, OfferDiscountService>();
 builder.Services.AddScoped<IBrandService, BrandService>();
 builder.Services.AddScoped<IAboutService, AboutService>();
 builder.Services.AddScoped<IContactServices, ContactServices>();        
+builder.Services.AddScoped<IStatisticsService, StatisticServices>();        
 
 
 

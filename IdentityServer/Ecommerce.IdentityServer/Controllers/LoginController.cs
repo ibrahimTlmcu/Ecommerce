@@ -13,39 +13,33 @@ namespace Ecommerce.IdentityServer.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-        private readonly SignInManager<ApplicationUser> _singInInManager;
+        private readonly SignInManager<ApplicationUser> _singInManager;
 
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public LoginController(SignInManager<ApplicationUser> singInInManager, UserManager<ApplicationUser> userManager)
+        public LoginController(SignInManager<ApplicationUser> singInManager, UserManager<ApplicationUser> userManager)
         {
-            _singInInManager = singInInManager;
+            _singInManager = singInManager;
             _userManager = userManager;
         }
 
         [HttpPost]
-        public async  Task<IActionResult> UserLogin(UserLoginDto userLoginDto)
+        public async Task<IActionResult> UserLogin(UserLoginDto userLoginDto)
         {
-            var result = await _singInInManager.PasswordSignInAsync(userLoginDto.UserName, userLoginDto.Password, false, false);
-            //ilk false remember me anlamina gelir
-            //kullanici sifreyi yuanlis girdighinde artar 5 oldunca da kilitler
+            var result = await _singInManager.PasswordSignInAsync(userLoginDto.UserName, userLoginDto.Password, false, false);
             var user = await _userManager.FindByNameAsync(userLoginDto.UserName);
             if (result.Succeeded)
             {
-                GetCheckAppUserViewModel model = new GetCheckAppUserViewModel();
-                model.UserName = userLoginDto.UserName;
-                model.Id = user.Id;
-                var token = JwtTokenGenerator.GenerateToken(model);
+                GetCheckAppUserViewModel getCheckAppUserViewModel = new GetCheckAppUserViewModel();
+                getCheckAppUserViewModel.UserName = userLoginDto.UserName;
+                getCheckAppUserViewModel.Id = user.Id;
+                var token = JwtTokenGenerator.GenerateToken(getCheckAppUserViewModel);
                 return Ok(token);
             }
             else
             {
-                return Ok("Kullanici Adi veya Sifre Hatali");
+                return Ok("Failed to log in");
             }
-
-
-              
-             
         }
     }
 }

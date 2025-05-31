@@ -77,7 +77,7 @@
           "Port": 7246
         }
       ],
-      "UpstreamPathTemplate": "/services/basket/{everything}",
+      "UpstreamPathTemplate": "/services/baskets/{everything}",
       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
       "UpstreamScheme": "http",
       "AuthenticationOptions": {
@@ -134,6 +134,23 @@
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "OcelotAuthenticationScheme",
         "AllowedScopes": [ "ImagesFullPermission" ]
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}/",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7047
+        }
+      ],
+      "UpstreamPathTemplate": "/services/message/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "UpstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "OcelotAuthenticationScheme",
+        "AllowedScopes": [ "MessageFullPermission" ]
       }
     }
   ],

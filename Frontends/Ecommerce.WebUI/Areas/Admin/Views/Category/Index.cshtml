@@ -1,53 +1,80 @@
 ﻿@model List<Ecommerce.DtoLayer.CatalogDtos.CategoryDtos.ResultCategoryDto>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Kategori Listesi";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
 
     int count = 0;
 }
-<section class="content container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="chart-box">
-                <h4>Basic Tables</h4>
-                <p>For basic styling&mdash;light padding and only horizontal dividers&mdash;add the base class <code>.table</code> to any <code>&lt;table&gt;</code>. It may seem super redundant, but given the widespread use of tables for other plugins like calendars and date pickers, we've opted to isolate our custom table styles.</p>
-                <div class="bs-example" data-example-id="simple-table">
-                    <table class="table">
-                        <caption>
-                            Optional table caption.
-                        </caption>
-                        <thead>
+<style>
+    .modern-card {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        max-width: 1100px;
+        width: 95%;
+        margin: 0 auto;
+        padding: 40px;
+        transition: all 0.3s ease;
+    }
 
-                            <tr>
-                                <th>#</th>
-                                <th>Kategori Adi</th>
-                                <th>Kategoriye Ait Urunler</th>
-                                <th>Sil</th>
-                                <th>Guncelle</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+        .modern-card:hover {
+            transform: scale(1.01);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
 
-                            @foreach (var item in Model)
-                            {
-                                count++;
-                                <tr>
-                                    <th scope="row">@count</th>
-                                    <td>@item.CategoryName</td>
+    .card-header-custom {
+        background: linear-gradient(90deg, #0d6efd, #6610f2);
+        color: white;
+        padding: 20px;
+        border-radius: 12px 12px 0 0;
+        text-align: center;
+        margin-bottom: 30px;
+    }
 
-                                    <td><a href="#" class="btn btn-warning">Kategoriye Ait Urunler</a></td>
-                                    <td><a href="/Admin/Category/DeleteCategory/@item.CategoryId" class="btn btn-danger">Sil</a></td>
-                                    <td><a href="/Admin/Category/UpdateCategory/@item.CategoryId" class="btn btn-success">Guncelle</a></td>
-                                </tr>
-                            }
+    table thead {
+        background-color: #f5f5f5;
+        font-weight: 600;
+    }
 
+    .btn {
+        margin-right: 4px;
+    }
+</style>
 
-                        </tbody>
-                    </table>
-                    <a href="/Admin/Category/CreateCategory" class="btn btn-primary"> Yeni Kategori Girisi </a>
-                </div>
+<section style="min-height: 100vh; background: linear-gradient(135deg, #e0eafc, #cfdef3); padding-top: 20px;">
+    <div class="modern-card">
+        <div class="card-header-custom">
+            <h2>📁 Kategori Listesi</h2>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Kategori Adı</th>
+                        <th>Kategoriye Ait Ürünler</th>
+                        <th>Sil</th>
+                        <th>Güncelle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        count++;
+                        <tr>
+                            <td>@count</td>
+                            <td>@item.CategoryName</td>
+                            <td><a href="#" class="btn btn-warning btn-sm">Kategoriye Ait Ürünler</a></td>
+                            <td><a href="/Admin/Category/DeleteCategory/@item.CategoryId" class="btn btn-danger btn-sm">Sil</a></td>
+                            <td><a href="/Admin/Category/UpdateCategory/@item.CategoryId" class="btn btn-success btn-sm">Güncelle</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div class="mt-4 text-end">
+                <a href="/Admin/Category/CreateCategory" class="btn btn-primary">➕ Yeni Kategori Girişi</a>
             </div>
         </div>
-
     </div>
 </section>

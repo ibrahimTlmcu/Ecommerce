@@ -15,6 +15,6 @@ namespace Ecommerce.Order.Application.Features.Mediator.Result.OrderingResults
 
         public DateTime OrderDate { get; set; }
 
-        public List<OrderDetail> OrderDetails { get; set; }
+
     }
 }

@@ -1,0 +1,83 @@
+﻿@using Ecommerce.DtoLayer.CargoDtos
+@model GetCargoCustomerByIdDto
+@{
+    ViewData["Title"] = "UserAddressInfo";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+<style>
+    .modern-card {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        max-width: 1100px;
+        width: 90%;
+        margin: auto;
+        padding: 40px;
+        transition: all 0.3s ease;
+    }
+
+        .modern-card:hover {
+            transform: scale(1.01);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+    .card-header-custom {
+        background: linear-gradient(90deg, #0d6efd, #6610f2);
+        color: white;
+        padding: 20px;
+        border-radius: 12px 12px 0 0;
+        text-align: center;
+    }
+
+    .info-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+
+    .info-label {
+        flex: 0 0 30%;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .info-value {
+        flex: 0 0 70%;
+        color: #555;
+    }
+
+    .emoji {
+        margin-right: 5px;
+    }
+</style>
+
+<section style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background-color: #f4f6f9;">
+    <div class="modern-card">
+        <div class="card-header-custom">
+            <h2>📦 Kullanıcı Adres ve İletişim Bilgisi</h2>
+        </div>
+        <br />
+        <div class="card-body mt-4">
+            <div class="info-row">
+                <div class="info-label"><span class="emoji">👤</span>Ad Soyad:</div>
+                <div class="info-value">@Model.Name @Model.Surname</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label"><span class="emoji">📧</span>Email:</div>
+                <div class="info-value">@Model.Email</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label"><span class="emoji">📞</span>Telefon:</div>
+                <div class="info-value">@Model.Phone</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label"><span class="emoji">🌆</span>İlçe - Şehir:</div>
+                <div class="info-value">@Model.District - @Model.City</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label"><span class="emoji">🏠</span>Adres:</div>
+                <div class="info-value">@Model.Address</div>
+            </div>
+        </div>
+    </div>
+</section>
