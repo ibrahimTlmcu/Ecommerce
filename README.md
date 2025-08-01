@@ -63,9 +63,4 @@ API Gateway üzerinden yönlendirme ve yetkilendirme sağlanır. Kimlik doğrula
 - Google Drive API credentials (fotoğraf yükleme için)
 - Temel ASP.NET Core bilgisi (zorunlu)
 
-## Kurulum
 
-1. Depoyu klonla:
-   ```bash
-   git clone https://github.com/USERNAME/MultiShop.git
-   cd MultiShop
